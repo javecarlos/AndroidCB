@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TrabajoFinalCB</string>
+    <string name="logo">Logo</string>
+    <string name="login_texto_usuario">Usuario</string>
+    <string name="login_texto_clave">Clave</string>
+    <string name="login_boton_entrar">Entrar</string>
+    <string name="login_texto_imagen">Imagen</string>
+    <string name="login_olvido_clave"><u>Olvidé mi contraseña</u></string>
+    <string name="login_crear_nueva_cuenta">Crear nueva cuenta</string>
+</resources>
