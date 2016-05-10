@@ -9,6 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
+import adapters.recyclerview.interfaces.IRVClienteAdapter;
 import entities.Cliente;
 import trabajofinalcb.javecarlos.pe.trabajofinalcb.R;
 
@@ -17,9 +18,11 @@ import trabajofinalcb.javecarlos.pe.trabajofinalcb.R;
  */
 public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVClienteViewHolder> {
     private ArrayList<Cliente> listaCliente;
+    private IRVClienteAdapter _mIRVClienteAdapter;
 
-    public RVClienteAdapter() {
+    public RVClienteAdapter(IRVClienteAdapter mIRVClienteAdapter) {
         listaCliente = new ArrayList<>();
+        _mIRVClienteAdapter = mIRVClienteAdapter;
     }
 
     public void add(Cliente cliente) {
@@ -39,7 +42,18 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
         holder.tvNombreClienteRV.setText(cliente.getEmpresaNombre());
         holder.tvDireccionClienteRV.setText(cliente.getEmpresaDireccion());
         holder.tvTelefonoClienteRV.setText(cliente.getContactoTelefono());
+
+        holder.itemView.setOnClickListener(itemViewOnClickListener);
+        holder.itemView.setTag(position);
     }
+
+    View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Cliente cliente = listaCliente.get((Integer) v.getTag());
+            _mIRVClienteAdapter.onItemClick(cliente);
+        }
+    };
 
     @Override
     public int getItemCount() {

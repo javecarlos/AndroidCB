@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ClienteActivity"></activity>
+        <activity android:name=".ClienteInfoActivity"></activity>
+        <activity android:name=".ClienteAddEditActivity"></activity>
     </application>
 
 </manifest>
