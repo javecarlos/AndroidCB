@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import entities.Cliente;
 import utils.Constantes;
+import utils.Utils;
 
 /**
  * Created by carlosarmando on 09/05/2016.
@@ -133,6 +134,11 @@ public class ClienteAddEditActivity extends AppCompatActivity {
 
         if(etContactoCorreo.getText().toString().trim().isEmpty()){
             resultado = "Ingrese su correo de contacto";
+            return resultado;
+        }
+
+        if(!Utils.IsEmailValid(etContactoCorreo.getText().toString().trim())){
+            resultado = "Formato de correo incorrecto";
             return resultado;
         }
 
