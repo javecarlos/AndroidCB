@@ -7,4 +7,5 @@
     <string name="login_texto_imagen">Imagen</string>
     <string name="login_olvido_clave"><u>Olvidé mi contraseña</u></string>
     <string name="login_crear_nueva_cuenta">Crear nueva cuenta</string>
+    <string name="mensaje_error_cliente">Error Registro Cliente</string>
 </resources>

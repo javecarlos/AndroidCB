@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import entities.Cliente;
 import utils.Constantes;
@@ -63,13 +64,15 @@ public class ClienteInfoActivity extends AppCompatActivity {
     View.OnClickListener imgClienteLlamarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Toast toast = Toast.makeText(ClienteInfoActivity.this,"LLAMAR AL TELEFONO",Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
     View.OnClickListener imgClienteMapaOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Toast toast = Toast.makeText(ClienteInfoActivity.this,"IR AL MAPA",Toast.LENGTH_SHORT);
+            toast.show();
         }
     };
 

@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 
 import adapters.recyclerview.RVClienteAdapter;
 import adapters.recyclerview.interfaces.IRVClienteAdapter;
@@ -15,9 +17,10 @@ import utils.Constantes;
 /**
  * Created by carlosarmando on 05/05/2016.
  */
-public class ClienteActivity extends AppCompatActivity implements IRVClienteAdapter{
+public class ClienteActivity extends AppCompatActivity implements IRVClienteAdapter {
     RecyclerView rvCliente;
     RVClienteAdapter mRVClienteAdapter;
+    ImageView imgClienteNuevo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,7 +38,21 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
 
         rvCliente.setLayoutManager(new LinearLayoutManager(ClienteActivity.this));
         rvCliente.setAdapter(mRVClienteAdapter);
+
+        imgClienteNuevo = (ImageView) findViewById(R.id.imgClienteNuevo);
+        imgClienteNuevo.setOnClickListener(imgClienteNuevoOnClickListener);
     }
+
+    View.OnClickListener imgClienteNuevoOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Cliente cliente = null;
+            Intent intent = new Intent(ClienteActivity.this, ClienteAddEditActivity.class);
+            intent.putExtra(Constantes.ARG_NUEVO_CLIENTE, true);
+            intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+            startActivity(intent);
+        }
+    };
 
     @Override
     public void onItemClick(Cliente cliente) {
