@@ -1,95 +1,82 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBlanco"
-    android:baselineAligned="false"
-    android:orientation="vertical"
-    android:padding="20dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Layout_MMV"
+    android:background="@drawable/fondo" >
 
-    <ImageView
-        android:layout_weight="8"
-        android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@string/logo"
-        android:src="@drawable/ventas_moviles_integracion" />
-
-    <EditText
-        android:id="@+id/etUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:hint="@string/login_texto_usuario"
-        android:layout_marginTop="10dp"
-        android:layout_weight="2"/>
     <TextView
-        android:id="@+id/tvErrorUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textColor="@color/colorRojo"
-        android:text=""
-        android:layout_weight="1"/>
+        android:text="INICIAR SESSION"
+        style="@style/txv_login_titulo_mw"
+        />
 
-    <EditText
-        android:id="@+id/etClave"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:hint="@string/login_texto_clave"
-        android:inputType="textPassword"
-        android:layout_weight="2"/>
-    <TextView
-        android:id="@+id/tvErrorClave"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:textColor="@color/colorRojo"
-        android:layout_weight="1"
-        android:text=""/>
+    <LinearLayout
+        style="@style/layout_login_margin_icono_text"
+        android:gravity="center" >
 
+        <LinearLayout
+            style="@style/layout_login_weight_icono"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/imageView2"
+                style="@style/Layout_WM"
+                android:background="@drawable/usuario_64x64" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/layout_login_weight_text" >
+
+            <EditText
+                android:id="@+id/edt_usuario"
+                style="@style/edt_login_usuario_mw"
+                android:inputType="textCapCharacters"
+                android:hint="usuario"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/layout_login_margin_icono_text"
+        android:gravity="center" >
+
+        <LinearLayout
+            style="@style/layout_login_weight_icono"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/imageView3"
+                style="@style/Layout_WM"
+                android:background="@drawable/pas_64x64" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/layout_login_weight_text" >
+
+            <EditText
+                android:id="@+id/edt_password"
+                style="@style/edt_login_password_mw"
+                android:hint="password" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/txv_menu_titulo">
+
+        <TextView
+            android:id="@+id/edt_error"
+            android:textColor="@color/rojo"
+            style="@style/txv_menu_titulo"/>
+
+
+    </LinearLayout>
     <Button
-        android:id="@+id/btnEntrar"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/login_boton_entrar"
-        android:textColor="@color/colorBlanco"
-        android:textStyle="bold"
-        android:layout_weight="2"/>
+        android:id="@+id/btn_ingresar"
+        style="@style/btn_login_ingresar"
+        android:background="#FFFFFF"
+        android:text="Ingresar" />
 
-    <!--<ImageView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/imageView4"-->
-    <!--android:layout_gravity="center_horizontal"-->
-    <!--android:src="@drawable/screen"-->
-    <!--android:contentDescription="@string/login_texto_imagen" />-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/tvOlvidoClave"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/login_olvido_clave"-->
-    <!--android:autoLink="all"-->
-    <!--android:textStyle="bold"-->
-    <!--android:textColor="@color/colorAccent"-->
-    <!--android:textColorLink="@color/colorPrimary"-->
-    <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
-    <!--android:gravity="center_horizontal" />-->
-
-    <!--<Button-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/login_crear_nueva_cuenta"-->
-    <!--android:id="@+id/btnCrear"-->
-    <!--android:background="@color/colorPrimary"-->
-    <!--android:textColor="@color/colorBlanco"-->
-    <!--android:textStyle="bold"-->
-    <!--android:layout_gravity="bottom"-->
-    <!--android:layout_marginTop="10dp"-->
-    <!--android:layout_marginBottom="10dp" />-->
 </LinearLayout>

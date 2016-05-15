@@ -1,98 +1,113 @@
 package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import org.w3c.dom.Text;
+import java.io.IOException;
+
+import dao.UsuariosDAO;
+import entities.Usuarios;
+
+import dao.DataBaseHelper;
+import dao.DataBaseSingleton;
 
 /**
  * Created by carlosarmando on 03/05/2016.
  */
 public class LoginActivity extends AppCompatActivity {
-    private static final String nombreUsuario = "admin";
-    private static final String claveUsuario = "1234";
+    public String JG = "GUSTAVO OSORIO TELLO";
+    Usuarios usu;
+    EditText edt_usuario, edt_password;
+    Button btn_ingresar;
+    TextView edt_error;
 
-//    EditText etUsuario;
-//    EditText etClave;
-
-    EditText etUsuario, etClave;
-    TextView tvErrorUsuario, tvErrorClave;
-    Button btnEntrar;
+    String usuario, password;
+    Context context;
+    Dialog dialog;
+    Activity activity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        edt_usuario=(EditText)findViewById(R.id.edt_usuario);
+        edt_password=(EditText)findViewById(R.id.edt_password);
+        edt_error=(TextView)findViewById(R.id.edt_error);
+        btn_ingresar=(Button)findViewById(R.id.btn_ingresar);
+        btn_ingresar.setOnClickListener(btnEntrarOnClickListener);
 
-        etUsuario = (EditText) findViewById(R.id.etUsuario);
-        etClave = (EditText) findViewById(R.id.etClave);
-        tvErrorUsuario = (TextView)findViewById(R.id.tvErrorUsuario);
-        tvErrorClave = (TextView)findViewById(R.id.tvErrorClave);
-        btnEntrar = (Button) findViewById(R.id.btnEntrar);
-
-        btnEntrar.setOnClickListener(btnEntrarOnClickListener);
+        DataBaseHelper dataBaseHelper = new DataBaseHelper(LoginActivity.this);
+        try {
+            dataBaseHelper.createDataBase();
+            new DataBaseSingleton(LoginActivity.this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     View.OnClickListener btnEntrarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            tvErrorUsuario.setVisibility(View.GONE);
-            tvErrorClave.setVisibility(View.GONE);
-            boolean esCorrecto = true;
+            boolean isOK = true;
+            usuario=edt_usuario.getText().toString();
+            password=edt_password.getText().toString();
 
-            String nombreUsuarioIngreso = etUsuario.getText().toString().trim();
-            String claveUsuarioIngreso = etClave.getText().toString().trim();
-
-            /*Logica para validar datos*/
-
-            /*Fin Logica para validar datos*/
-
-            if (nombreUsuarioIngreso.isEmpty()) {
-                tvErrorUsuario.setVisibility(View.VISIBLE);
-                tvErrorUsuario.setText("El Nombre de Usuario no puede ser vacio");
-                esCorrecto = false;
-            } else {
-                if (!nombreUsuario.equals(nombreUsuarioIngreso)) {
-                    tvErrorUsuario.setVisibility(View.VISIBLE);
-                    tvErrorUsuario.setText("Nombre de Usuario incorrecto");
-                    esCorrecto = false;
-                }
-                else{
-                    tvErrorUsuario.setVisibility(View.INVISIBLE);
-                    tvErrorUsuario.setText("");
-                    //esCorrecto = true;
-                }
+            if (usuario.trim().isEmpty()) {
+                edt_usuario.setError("Ingrese Usuario");
+                isOK = false;
             }
 
-            if (claveUsuarioIngreso.isEmpty()) {
-                tvErrorClave.setVisibility(View.VISIBLE);
-                tvErrorClave.setText("La clave de Usuario no puede ser vacio");
-                esCorrecto = false;
-            } else {
-                if (!claveUsuario.equals(claveUsuarioIngreso)) {
-                    tvErrorClave.setVisibility(View.VISIBLE);
-                    tvErrorClave.setText("Clave de Usuario incorrecta");
-                    esCorrecto = false;
-                }else{
-                    tvErrorClave.setVisibility(View.INVISIBLE);
-                    tvErrorClave.setText("");
-                    //esCorrecto = true;
-                }
+            if (password.trim().isEmpty()) {
+                edt_password.setError("Ingrese Clave");
+                isOK = false;
             }
 
-            if (esCorrecto) {
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                startActivity(intent);
-                finish();
+            if (isOK) {
+
+                if (usu == null)
+                    usu = new Usuarios();
+
+                usu.setUSusu(usuario.trim());
+                usu.setUSclave(password.trim());
+
+                // boolean isConsul = new UsuariosDAO().listUsuarios(usu);
+                // boolean isInserted = new ProductosDAO().insertProducto(productos);
+                //  if (isConsul) {
+                //  Toast.makeText(.this, productos.getNombreP() + " ha sido registrado", Toast.LENGTH_LONG).show();
+                //    finish();
+                // }
+                //else
+                //   new AlertDialog.Builder(ProductoAddEditActivity.this).setTitle(R.string.app_name).setMessage("No se pudo regristrar en la base de datos").setNegativeButton("Aceptar", null).show();
+
+
+
+                if (usuario.equals("jg") && password.equals("123")){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    //   intent.putExtra(MainActivity.ARG_NOMBRE,JG.toString().trim());
+                    startActivityForResult(intent, 99);
+                    finish();
+
+                }
+                else {
+                    edt_error.setText("Credenciales Incorrectas");
+
+                }
+
             }
         }
+
     };
 }

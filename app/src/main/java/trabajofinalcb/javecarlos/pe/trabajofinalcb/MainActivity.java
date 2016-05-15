@@ -1,6 +1,7 @@
 package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity implements IRVMenuAdapter {
                 startActivity(intentOpcion);
                 break;
             case 2:
-                intentOpcion = new Intent(MainActivity.this, ClienteActivity.class);
+                //productos
+                intentOpcion = new Intent(MainActivity.this, ProductoActivity.class);
                 startActivity(intentOpcion);
                 break;
             case 3:
@@ -52,8 +54,11 @@ public class MainActivity extends AppCompatActivity implements IRVMenuAdapter {
                 startActivity(intentOpcion);
                 break;
             case 4:
-                Toast toast = Toast.makeText(MainActivity.this, menu.getDescripcion(), Toast.LENGTH_SHORT);
-                toast.show();
+                //CERRAR SESSION
+                PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().clear().commit();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             default:
                 break;

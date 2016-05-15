@@ -25,6 +25,9 @@
         <activity android:name=".ClienteActivity"></activity>
         <activity android:name=".ClienteInfoActivity"></activity>
         <activity android:name=".ClienteAddEditActivity"></activity>
+        <activity android:name=".ProductoActivity"></activity>
+        <activity android:name="ProductoAddEditActivity"></activity>
+        <activity android:name="ProductoInfoActivity"></activity>
     </application>
 
 </manifest>
