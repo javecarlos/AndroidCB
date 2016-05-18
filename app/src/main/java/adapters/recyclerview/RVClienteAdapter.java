@@ -30,6 +30,18 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
         notifyDataSetChanged();
     }
 
+    public void addAll(ArrayList<Cliente> lstCliente) {
+        int position = listaCliente.size();
+        listaCliente.addAll(lstCliente);
+        notifyItemRangeInserted(position, lstCliente.size());
+    }
+
+    public void clearAndAddAll(ArrayList<Cliente> lstCliente) {
+        listaCliente.clear();
+        listaCliente.addAll(lstCliente);
+        notifyDataSetChanged();
+    }
+
     @Override
     public RVClienteViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new RVClienteViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_cliente_rv, parent, false));
@@ -41,7 +53,7 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
 
         holder.tvNombreClienteRV.setText(cliente.getEmpresaNombre());
         holder.tvDireccionClienteRV.setText(cliente.getEmpresaDireccion());
-        holder.tvTelefonoClienteRV.setText(cliente.getContactoTelefono());
+        holder.tvTelefonoClienteRV.setText(String.valueOf(cliente.getContactoTelefono()));
 
         holder.itemView.setOnClickListener(itemViewOnClickListener);
         holder.itemView.setTag(position);

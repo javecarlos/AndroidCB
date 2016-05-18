@@ -7,9 +7,10 @@ import android.os.Parcelable;
  * Created by carlosarmando on 05/05/2016.
  */
 public class Cliente implements Parcelable {
+    private int EmpresaId;
     private String ContactoNombre;
     private String ContactoApellido;
-    private String ContactoTelefono;
+    private int ContactoTelefono;
     private String ContactoCorreo;
     private String EmpresaNombre;
     private String EmpresaDireccion;
@@ -21,9 +22,10 @@ public class Cliente implements Parcelable {
 
     }
 
-    public Cliente(String contactoNombre, String contactoApellido, String contactoTelefono, String contactoCorreo,
+    public Cliente(int empresaId, String contactoNombre, String contactoApellido, int contactoTelefono, String contactoCorreo,
                    String empresaNombre, String empresaDireccion, String empresaDistrito, String empresaReferencia,
                    String empresaMap) {
+        this.EmpresaId = empresaId;
         this.ContactoNombre = contactoNombre;
         this.ContactoApellido = contactoApellido;
         this.ContactoTelefono = contactoTelefono;
@@ -33,6 +35,14 @@ public class Cliente implements Parcelable {
         this.EmpresaDistrito = empresaDistrito;
         this.EmpresaReferencia = empresaReferencia;
         this.EmpresaMap = empresaMap;
+    }
+
+    public int getEmpresaId(){
+        return EmpresaId;
+    }
+
+    public void  setEmpresaId(int empresaId){
+        EmpresaId = empresaId;
     }
 
     public String getContactoNombre() {
@@ -51,11 +61,11 @@ public class Cliente implements Parcelable {
         ContactoApellido = contactoApellido;
     }
 
-    public String getContactoTelefono() {
+    public int getContactoTelefono() {
         return ContactoTelefono;
     }
 
-    public void setContactoTelefono(String contactoTelefono) {
+    public void setContactoTelefono(int contactoTelefono) {
         ContactoTelefono = contactoTelefono;
     }
 
@@ -108,9 +118,10 @@ public class Cliente implements Parcelable {
     }
 
     protected Cliente(Parcel in) {
+        EmpresaId = in.readInt();
         ContactoNombre = in.readString();
         ContactoApellido = in.readString();
-        ContactoTelefono = in.readString();
+        ContactoTelefono = in.readInt();
         ContactoCorreo = in.readString();
         EmpresaNombre = in.readString();
         EmpresaDireccion = in.readString();
@@ -126,9 +137,10 @@ public class Cliente implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(EmpresaId);
         dest.writeString(ContactoNombre);
         dest.writeString(ContactoApellido);
-        dest.writeString(ContactoTelefono);
+        dest.writeInt(ContactoTelefono);
         dest.writeString(ContactoCorreo);
         dest.writeString(EmpresaNombre);
         dest.writeString(EmpresaDireccion);

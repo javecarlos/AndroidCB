@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 import adapters.recyclerview.RVClienteAdapter;
 import adapters.recyclerview.interfaces.IRVClienteAdapter;
+import dao.ClienteDAO;
+import dao.ProductosDAO;
 import entities.Cliente;
 import utils.Constantes;
 
@@ -31,10 +33,10 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
 
         mRVClienteAdapter = new RVClienteAdapter(ClienteActivity.this);
 
-        mRVClienteAdapter.add(new Cliente("Luciana", "Ramos", "923123213", "luciana.ramos@yahoo.es", "Embotelladora Ramos",
-                "Avenida Benavides 234", "Miraflores", "Al costado del Atlantic City", ""));
-        mRVClienteAdapter.add(new Cliente("Juan", "Perez", "987654321", "jperez@hotmail.com", "Galletera del Norte",
-                "Avenida Industrial 123", "Trujillo", "Al costado de la plaza de armas", ""));
+//        mRVClienteAdapter.add(new Cliente("Luciana", "Ramos", "923123213", "luciana.ramos@yahoo.es", "Embotelladora Ramos",
+//                "Avenida Benavides 234", "Miraflores", "Al costado del Atlantic City", ""));
+//        mRVClienteAdapter.add(new Cliente("Juan", "Perez", "987654321", "jperez@hotmail.com", "Galletera del Norte",
+//                "Avenida Industrial 123", "Trujillo", "Al costado de la plaza de armas", ""));
 
         rvCliente.setLayoutManager(new LinearLayoutManager(ClienteActivity.this));
         rvCliente.setAdapter(mRVClienteAdapter);
@@ -59,5 +61,11 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
         Intent intent = new Intent(ClienteActivity.this, ClienteInfoActivity.class);
         intent.putExtra(Constantes.ARG_CLIENTE, cliente);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        mRVClienteAdapter.clearAndAddAll(new ClienteDAO().listCliente());
     }
 }

@@ -110,7 +110,7 @@ public class ClienteInfoActivity extends AppCompatActivity {
         tvContactoNombreInfo.setText(cliente.getContactoNombre());
         tvContactoApellidoInfo.setText(cliente.getContactoApellido());
         tvContactoCorreoInfo.setText(cliente.getContactoCorreo());
-        tvContactoTelefonoInfo.setText(cliente.getContactoTelefono());
+        tvContactoTelefonoInfo.setText(String.valueOf(cliente.getContactoTelefono()));
         tvClienteDireccionInfo.setText(cliente.getEmpresaDireccion());
         tvClienteDistritoInfo.setText(cliente.getEmpresaDistrito());
         tvClienteReferenciaInfo.setText(cliente.getEmpresaReferencia());
