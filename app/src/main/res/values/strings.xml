@@ -8,4 +8,5 @@
     <string name="login_olvido_clave"><u>Olvidé mi contraseña</u></string>
     <string name="login_crear_nueva_cuenta">Crear nueva cuenta</string>
     <string name="mensaje_error_cliente">Error Registro Cliente</string>
+    <string name="texto_splash_screen">Registro de Pedido</string>
 </resources>

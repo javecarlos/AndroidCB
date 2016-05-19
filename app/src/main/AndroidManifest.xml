@@ -15,19 +15,20 @@
                 <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".ClienteActivity"></activity>
         <activity android:name=".ClienteInfoActivity"></activity>
         <activity android:name=".ClienteAddEditActivity"></activity>
         <activity android:name=".ProductoActivity"></activity>
-        <activity android:name="ProductoAddEditActivity"></activity>
-        <activity android:name="ProductoInfoActivity"></activity>
+        <activity android:name=".ProductoAddEditActivity"></activity>
+        <activity android:name=".ProductoInfoActivity"></activity>
     </application>
 
 </manifest>
