@@ -75,6 +75,7 @@
                     android:id="@+id/etContactoNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -89,6 +90,7 @@
                     android:id="@+id/etContactoApellido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -103,25 +105,26 @@
                     android:id="@+id/etContactoTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="9"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:inputType="number"
-                    android:maxLength="9"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Correo"
-                    android:textSize="11sp"/>
+                    android:textSize="11sp" />
 
                 <EditText
                     android:id="@+id/etContactoCorreo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -145,6 +148,7 @@
                     android:id="@+id/etClienteNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -159,6 +163,7 @@
                     android:id="@+id/etClienteDireccion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -174,6 +179,7 @@
                     android:id="@+id/etClienteDistrito"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -189,6 +195,7 @@
                     android:id="@+id/etClienteReferencia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
                     android:textStyle="bold" />

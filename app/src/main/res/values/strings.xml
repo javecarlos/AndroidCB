@@ -9,4 +9,31 @@
     <string name="login_crear_nueva_cuenta">Crear nueva cuenta</string>
     <string name="mensaje_error_cliente">Error Registro Cliente</string>
     <string name="texto_splash_screen">Registro de Pedido</string>
+
+    <!-- Para nombre de botones -->
+    <string name="btnAceptar">Aceptar</string>
+
+    <!--Para el registro de Cliente -->
+    <string name="error_vacio_nombre_contacto">Ingrese su nombre de contacto</string>
+    <string name="error_maxlength_nombre_contacto">Su nombre no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_apellido_contacto">Ingrese su apellido de contacto</string>
+    <string name="error_maxlength_apellido_contacto">Su apellido no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_telefono_contacto">Ingrese su telefono de contacto</string>
+    <string name="error_maxlength_telefono_contacto">El telefono debe ser de 9 digitos</string>
+    <string name="error_vacio_correo_contacto">Ingrese su correo de contacto</string>
+    <string name="error_formato_correo_contacto">Formato de correo incorrecto</string>
+    <string name="error_maxlength_correo_contacto">Su correo no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_nombre_empresa">Ingrese su nombre de empresa</string>
+    <string name="error_maxlength_nombre_empresa">Su nombre de empresa no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_direccion_empresa">Ingrese su dirección de empresa</string>
+    <string name="error_maxlength_direccion_empresa">Su dirección de empresa no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_distrito_empresa">Ingrese su distrito de empresa</string>
+    <string name="error_maxlength_distrito_empresa">Su distrito de empresa no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_referencia_empresa">Ingrese su referencia de empresa</string>
+    <string name="error_maxlength_referencia_empresa">Su distrito de empresa no puede tener más de 50 caracteres</string>
+    <string name="texto_nuevo_cliente">Nuevo Cliente</string>
+    <string name="texto_mensaje_insertado">ha sido insertado</string>
+    <string name="texto_mensaje_actualizado">ha sido actualizado</string>
+    <string name="error_insertar_cliente">No se pudo insertar en la base de datos</string>
+    <string name="error_actualizar_cliente">No se pudo actualizar en la base de datos</string>
 </resources>

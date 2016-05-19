@@ -43,7 +43,7 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         if (!esNuevo && cliente != null) {
             SetDataCliente(cliente);
         } else {
-            tvClienteNombre.setText("Nuevo Cliente");
+            tvClienteNombre.setText(R.string.texto_nuevo_cliente);
         }
 
         /*Cargar Eventos de los Iconos*/
@@ -92,33 +92,39 @@ public class ClienteAddEditActivity extends AppCompatActivity {
                     //Insert
                     boolean isInserted = new ClienteDAO().insertCliente(cliente);
                     if (isInserted) {
-                        Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " ha sido insertada",
-                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " " +
+                                getResources().getString(R.string.texto_mensaje_insertado), Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
+                        String errorInsercion = getResources().getString(R.string.error_insertar_cliente);
+                        String btnAceptar = getResources().getString(R.string.btnAceptar);
                         new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.app_name)
-                                .setMessage("No se pudo actualizar en la base de datos").setNegativeButton("Aceptar", null).show();
+                                .setMessage(errorInsercion).setNegativeButton(btnAceptar, null).show();
                     }
                 } else {
                     //Update
                     boolean isUpdated = new ClienteDAO().updateCliente(cliente);
                     if (isUpdated) {
-                        Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " ha sido actualizada", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " " +
+                                getResources().getString(R.string.texto_mensaje_actualizado), Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
+                        String errorActualizar = getResources().getString(R.string.error_actualizar_cliente);
+                        String btnAceptar = getResources().getString(R.string.btnAceptar);
                         new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.app_name)
-                                .setMessage("No se pudo actualizar en la base de datos").setNegativeButton("Aceptar", null).show();
+                                .setMessage(errorActualizar).setNegativeButton(btnAceptar, null).show();
                     }
                 }
             } else {
+                String btnAceptar = getResources().getString(R.string.btnAceptar);
                 new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.mensaje_error_cliente)
-                        .setMessage(mensaje).setNeutralButton("Aceptar", null).show();
+                        .setMessage(mensaje).setNeutralButton(btnAceptar, null).show();
             }
         }
     };
@@ -127,52 +133,87 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         String resultado = "";
 
         if (etContactoNombre.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su nombre de contacto";
+            resultado = getResources().getString(R.string.error_vacio_nombre_contacto);
+            return resultado;
+        }
+
+        if (etContactoNombre.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_nombre_contacto);
             return resultado;
         }
 
         if (etContactoApellido.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su apellido de contacto";
+            resultado = getResources().getString(R.string.error_vacio_apellido_contacto);
+            return resultado;
+        }
+
+        if (etContactoApellido.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_apellido_contacto);
             return resultado;
         }
 
         if (etContactoTelefono.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su telefono de contacto";
+            resultado = getResources().getString(R.string.error_vacio_telefono_contacto);
             return resultado;
         }
 
         if (etContactoTelefono.getText().toString().trim().length() < 9) {
-            resultado = "El telefono debe ser de 9 digitos";
+            resultado = getResources().getString(R.string.error_maxlength_telefono_contacto);
             return resultado;
         }
 
         if (etContactoCorreo.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su correo de contacto";
+            resultado = getResources().getString(R.string.error_vacio_correo_contacto);
             return resultado;
         }
 
         if (!Utils.IsEmailValid(etContactoCorreo.getText().toString().trim())) {
-            resultado = "Formato de correo incorrecto";
+            resultado = getResources().getString(R.string.error_formato_correo_contacto);
+            return resultado;
+        }
+
+        if (etContactoCorreo.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_correo_contacto);
             return resultado;
         }
 
         if (etClienteNombre.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su nombre de empresa";
+            resultado = getResources().getString(R.string.error_vacio_nombre_empresa);
+            return resultado;
+        }
+
+        if (etClienteNombre.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_nombre_empresa);
             return resultado;
         }
 
         if (etClienteDireccion.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su dirección de empresa";
+            resultado = getResources().getString(R.string.error_vacio_direccion_empresa);
+            return resultado;
+        }
+
+        if (etClienteDireccion.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_direccion_empresa);
             return resultado;
         }
 
         if (etClienteDistrito.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su distrito de empresa";
+            resultado = getResources().getString(R.string.error_vacio_distrito_empresa);
+            return resultado;
+        }
+
+        if (etClienteDistrito.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_distrito_empresa);
             return resultado;
         }
 
         if (etClienteReferencia.getText().toString().trim().isEmpty()) {
-            resultado = "Ingrese su referencia de empresa";
+            resultado = getResources().getString(R.string.error_vacio_referencia_empresa);
+            return resultado;
+        }
+
+        if (etClienteReferencia.getText().toString().trim().length() > 50) {
+            resultado = getResources().getString(R.string.error_maxlength_referencia_empresa);
             return resultado;
         }
 
