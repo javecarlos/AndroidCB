@@ -24,21 +24,21 @@
         android:textStyle="bold"
         android:text="@string/texto_splash_screen"/>
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="0 %"-->
-        <!--android:gravity="center"-->
-        <!--android:id="@+id/tvProgress"/>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="0 %"
+        android:gravity="center"
+        android:id="@+id/tvProgress"/>
     <ProgressBar
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="wrap_content"
         android:id="@+id/progressBar"
         android:layout_gravity="center"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
-        android:max="3" />
+        android:max="100" />
 
 </LinearLayout>
