@@ -28,7 +28,6 @@ import dao.DataBaseSingleton;
  * Created by carlosarmando on 03/05/2016.
  */
 public class LoginActivity extends AppCompatActivity {
-    public String JG = "GUSTAVO OSORIO TELLO";
     Usuarios usu;
     EditText edt_usuario, edt_password;
     Button btn_ingresar;
@@ -75,37 +74,21 @@ public class LoginActivity extends AppCompatActivity {
                 isOK = false;
             }
 
-            if (isOK) {
-
-                if (usu == null)
-                    usu = new Usuarios();
-
+            if (isOK) {//Validacion OK
+                usu=new Usuarios();
                 usu.setUSusu(usuario.trim());
                 usu.setUSclave(password.trim());
-
-                // boolean isConsul = new UsuariosDAO().listUsuarios(usu);
-                // boolean isInserted = new ProductosDAO().insertProducto(productos);
-                //  if (isConsul) {
-                //  Toast.makeText(.this, productos.getNombreP() + " ha sido registrado", Toast.LENGTH_LONG).show();
-                //    finish();
-                // }
-                //else
-                //   new AlertDialog.Builder(ProductoAddEditActivity.this).setTitle(R.string.app_name).setMessage("No se pudo regristrar en la base de datos").setNegativeButton("Aceptar", null).show();
-
-
-
-                if (usuario.equals("jg") && password.equals("123")){
+                Usuarios usu1=new Usuarios();
+                UsuariosDAO ud=new UsuariosDAO();
+                usu1=ud.ValUsuario(usu);
+                if (usu1 != null){ //No encontro Usuario
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    //   intent.putExtra(MainActivity.ARG_NOMBRE,JG.toString().trim());
                     startActivityForResult(intent, 99);
                     finish();
-
                 }
                 else {
                     edt_error.setText("Credenciales Incorrectas");
-
                 }
-
             }
         }
 

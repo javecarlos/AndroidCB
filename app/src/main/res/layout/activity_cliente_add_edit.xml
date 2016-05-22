@@ -79,7 +79,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -94,7 +95,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -110,7 +112,8 @@
                     android:maxLength="9"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -125,7 +128,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
             </LinearLayout>
 
@@ -152,7 +156,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -167,7 +172,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
 
                 <TextView
@@ -183,7 +189,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
 
 
                 <TextView
@@ -199,7 +206,8 @@
                     android:maxLength="50"
                     android:text=""
                     android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/border_edit_text"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

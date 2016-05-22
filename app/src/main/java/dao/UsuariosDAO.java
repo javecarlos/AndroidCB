@@ -33,7 +33,7 @@ public class UsuariosDAO {
     public Usuarios ValUsuario(Usuarios usu) {
         Cursor cursor = null;
         try {
-            cursor = DataBaseSingleton.getInstance().query("EC_TM_USU", null, "USU_LOGIN = ? , US_CLAVE = ?", new String[]{String.valueOf(usu.getUSusu()),String.valueOf(usu.getUSclave())}, null, null, null, "1");
+            cursor = DataBaseSingleton.getInstance().query("EC_TM_USU", null, "USU_LOGIN = ? AND US_CLAVE = ?", new String[]{String.valueOf(usu.getUSusu()),String.valueOf(usu.getUSclave())}, null, null, null, "1");
 
             if (cursor.moveToFirst())
                 usu = transformCursorToUsuarios(cursor);
