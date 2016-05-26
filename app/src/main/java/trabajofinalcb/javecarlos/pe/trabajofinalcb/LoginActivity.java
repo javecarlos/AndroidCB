@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.w3c.dom.Text;
@@ -30,7 +31,7 @@ import dao.DataBaseSingleton;
 public class LoginActivity extends AppCompatActivity {
     Usuarios usu;
     EditText edt_usuario, edt_password;
-    Button btn_ingresar;
+    ImageButton btn_ingresar;
     TextView edt_error;
 
     String usuario, password;
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         edt_usuario=(EditText)findViewById(R.id.edt_usuario);
         edt_password=(EditText)findViewById(R.id.edt_password);
         edt_error=(TextView)findViewById(R.id.edt_error);
-        btn_ingresar=(Button)findViewById(R.id.btn_ingresar);
+        btn_ingresar=(ImageButton)findViewById(R.id.btn_ingresar);
         btn_ingresar.setOnClickListener(btnEntrarOnClickListener);
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(LoginActivity.this);
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 UsuariosDAO ud=new UsuariosDAO();
                 usu1=ud.ValUsuario(usu);
                 if (usu1 != null){ //No encontro Usuario
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, ClienteActivity.class);
                     startActivityForResult(intent, 99);
                     finish();
                 }

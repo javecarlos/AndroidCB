@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,10 +19,10 @@ import utils.Constantes;
  * Created by carlosarmando on 09/05/2016.
  */
 public class ClienteInfoActivity extends AppCompatActivity {
-    private TextView tvClienteNombreInfo, tvContactoNombreInfo, tvContactoApellidoInfo, tvContactoCorreoInfo, tvContactoTelefonoInfo,
+    private TextView tvContactoNombreInfo, tvContactoApellidoInfo, tvContactoCorreoInfo, tvContactoTelefonoInfo,
             tvClienteDireccionInfo, tvClienteDistritoInfo, tvClienteReferenciaInfo;
-    private ImageView imgClienteRegresarLista, imgClienteEditar, imgClienteLlamar, imgClienteMapa;
-
+    private ImageView imgClienteLlamar, imgClienteMapa;
+    private Toolbar toolbar;
     private Cliente cliente;
 
     @Override
@@ -31,8 +34,6 @@ public class ClienteInfoActivity extends AppCompatActivity {
         CargarImageView();
 
         /*Cargar Eventos Iconos*/
-        imgClienteRegresarLista.setOnClickListener(imgClienteRegresarListaOnClickListener);
-        imgClienteEditar.setOnClickListener(imgClienteEditarOnClickListener);
         imgClienteLlamar.setOnClickListener(imgClienteLlamarOnClickListener);
         imgClienteMapa.setOnClickListener(imgClienteMapaOnClickListener);
 
@@ -40,43 +41,57 @@ public class ClienteInfoActivity extends AppCompatActivity {
 
         if (cliente != null)
             SetDataCliente(cliente);
+
+        //para el toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(cliente != null ? cliente.getEmpresaNombre() : "");
     }
 
-    View.OnClickListener imgClienteRegresarListaOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(ClienteInfoActivity.this, ClienteActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    };
-    View.OnClickListener imgClienteEditarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            boolean esNuevo;
-            Intent intent = new Intent(ClienteInfoActivity.this, ClienteAddEditActivity.class);
-            esNuevo = cliente == null;
-            intent.putExtra(Constantes.ARG_NUEVO_CLIENTE,esNuevo);
-            intent.putExtra(Constantes.ARG_CLIENTE, cliente);
-            startActivity(intent);
-        }
-    };
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflamos el menú que va a aparecer en el Toolbar
+        getMenuInflater().inflate(R.menu.menu_cliente_info, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Capturo el click de la flecha hacia atrás
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else  //Capturo el click del guardar
+            if (item.getItemId() == R.id.btnEditar) {
+                boolean esNuevo;
+                Intent intent = new Intent(ClienteInfoActivity.this, ClienteAddEditActivity.class);
+                esNuevo = cliente == null;
+                intent.putExtra(Constantes.ARG_NUEVO_CLIENTE, esNuevo);
+                intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+                startActivity(intent);
+                return true;
+            }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     View.OnClickListener imgClienteLlamarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast toast = Toast.makeText(ClienteInfoActivity.this,"LLAMAR AL TELEFONO",Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(ClienteInfoActivity.this, "LLAMAR AL TELEFONO", Toast.LENGTH_SHORT);
             toast.show();
         }
     };
     View.OnClickListener imgClienteMapaOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast toast = Toast.makeText(ClienteInfoActivity.this,"IR AL MAPA",Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(ClienteInfoActivity.this, "IR AL MAPA", Toast.LENGTH_SHORT);
             toast.show();
         }
     };
 
-    private Cliente ObtenerCliente(){
+    private Cliente ObtenerCliente() {
         Cliente clienteInfo;
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(Constantes.ARG_CLIENTE)) {
             clienteInfo = getIntent().getParcelableExtra(Constantes.ARG_CLIENTE);
@@ -87,8 +102,7 @@ public class ClienteInfoActivity extends AppCompatActivity {
         return clienteInfo;
     }
 
-    private void CargarTextView(){
-        tvClienteNombreInfo = (TextView) findViewById(R.id.tvClienteNombreInfo);
+    private void CargarTextView() {
         tvContactoNombreInfo = (TextView) findViewById(R.id.tvContactoNombreInfo);
         tvContactoApellidoInfo = (TextView) findViewById(R.id.tvContactoApellidoInfo);
         tvContactoCorreoInfo = (TextView) findViewById(R.id.tvContactoCorreoInfo);
@@ -98,15 +112,12 @@ public class ClienteInfoActivity extends AppCompatActivity {
         tvClienteReferenciaInfo = (TextView) findViewById(R.id.tvClienteReferenciaInfo);
     }
 
-    private void CargarImageView(){
-        imgClienteRegresarLista = (ImageView)findViewById(R.id.imgClienteRegresarLista);
-        imgClienteEditar = (ImageView)findViewById(R.id.imgClienteEditar);
-        imgClienteLlamar = (ImageView)findViewById(R.id.imgClienteLlamar);
-        imgClienteMapa = (ImageView)findViewById(R.id.imgClienteMapa);
+    private void CargarImageView() {
+        imgClienteLlamar = (ImageView) findViewById(R.id.imgClienteLlamar);
+        imgClienteMapa = (ImageView) findViewById(R.id.imgClienteMapa);
     }
 
     private void SetDataCliente(Cliente cliente) {
-        tvClienteNombreInfo.setText(cliente.getEmpresaNombre());
         tvContactoNombreInfo.setText(cliente.getContactoNombre());
         tvContactoApellidoInfo.setText(cliente.getContactoApellido());
         tvContactoCorreoInfo.setText(cliente.getContactoCorreo());

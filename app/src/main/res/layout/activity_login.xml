@@ -1,82 +1,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Layout_MMV"
-    android:background="@drawable/fondo" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/saledayin"
+    android:orientation="vertical">
 
-    <TextView
-        android:text="INICIAR SESSION"
-        style="@style/txv_login_titulo_mw"
-        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_marginTop="10pt"
+        android:paddingBottom="4pt"
+        android:src="@drawable/lelogo" />
 
     <LinearLayout
-        style="@style/layout_login_margin_icono_text"
-        android:gravity="center" >
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/layout_login_weight_icono"
-            android:gravity="center" >
+        <EditText
+            android:id="@+id/edt_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="18pt"
+            android:layout_marginLeft="25pt"
+            android:layout_marginRight="25pt"
+            android:layout_marginTop="50pt"
+            android:layout_marginBottom="5pt"
+            android:hint="Nombre"
+            android:textColor="#FAFCEF"
+            android:textColorHint="#fff" />
 
-            <Button
-                android:id="@+id/imageView2"
-                style="@style/Layout_WM"
-                android:background="@drawable/usuario_64x64" />
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="18pt"
+            android:layout_below="@id/edt_usuario"
+            android:layout_marginLeft="25pt"
+            android:layout_marginRight="25pt"
+            android:layout_marginBottom="5pt"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:textColor="#FAFCEF"
+            android:textColorHint="#fff" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/layout_login_weight_text" >
-
-            <EditText
-                android:id="@+id/edt_usuario"
-                style="@style/edt_login_usuario_mw"
-                android:inputType="textCapCharacters"
-                android:hint="usuario"/>
-
-        </LinearLayout>
-
+        <ImageButton
+            android:id="@+id/btn_ingresar"
+            android:layout_width="60pt"
+            android:layout_height="20pt"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btningresar" />
     </LinearLayout>
 
     <LinearLayout
-        style="@style/layout_login_margin_icono_text"
-        android:gravity="center" >
-
-        <LinearLayout
-            style="@style/layout_login_weight_icono"
-            android:gravity="center" >
-
-            <Button
-                android:id="@+id/imageView3"
-                style="@style/Layout_WM"
-                android:background="@drawable/pas_64x64" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/layout_login_weight_text" >
-
-            <EditText
-                android:id="@+id/edt_password"
-                style="@style/edt_login_password_mw"
-                android:hint="password" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         style="@style/txv_menu_titulo">
-
         <TextView
             android:id="@+id/edt_error"
-            android:textColor="@color/rojo"
-            style="@style/txv_menu_titulo"/>
-
-
+            style="@style/txv_menu_titulo"
+            android:textColor="#cc1" />
     </LinearLayout>
-    <Button
-        android:id="@+id/btn_ingresar"
-        style="@style/btn_login_ingresar"
-        android:background="#FFFFFF"
-        android:text="Ingresar" />
 
 </LinearLayout>
