@@ -43,19 +43,19 @@ public class RVMenuAdapter extends RecyclerView.Adapter<RVMenuAdapter.RVMenuView
 
         switch (menu.getId()) {
             case 1:
-                holder.imgIcono.setImageResource(R.drawable.ic_accessibility_black_24dp);
+                holder.imgIcono.setImageResource(R.drawable.ic_accessibility_white_24dp);
                 break;
             case 2:
-                holder.imgIcono.setImageResource(R.drawable.ic_view_stream_black_24dp);
+                holder.imgIcono.setImageResource(R.drawable.ic_view_stream_white_24dp);
                 break;
             case 3:
-                holder.imgIcono.setImageResource(R.drawable.ic_shopping_cart_black_24dp);
+                holder.imgIcono.setImageResource(R.drawable.ic_shopping_cart_white_24dp);
                 break;
             case 4:
-                holder.imgIcono.setImageResource(R.drawable.ic_power_settings_new_black_24dp);
+                holder.imgIcono.setImageResource(R.drawable.ic_power_settings_new_white_24dp);
                 break;
             default:
-                holder.imgIcono.setImageResource(R.drawable.ic_accessibility_black_24dp);
+                holder.imgIcono.setImageResource(R.drawable.ic_accessibility_white_24dp);
                 break;
         }
 

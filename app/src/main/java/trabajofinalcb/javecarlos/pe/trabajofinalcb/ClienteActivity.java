@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import adapters.recyclerview.RVClienteAdapter;
@@ -24,6 +25,7 @@ import adapters.recyclerview.interfaces.IRVClienteAdapter;
 import dao.ClienteDAO;
 import dao.ProductosDAO;
 import entities.Cliente;
+import entities.Usuarios;
 import utils.Constantes;
 
 /**
@@ -38,6 +40,8 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
     private DrawerLayout dlMenu;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private NavigationView nvMenu;
+    private ImageView imgLogo;
+    private TextView tvNombreUsuario;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,5 +151,28 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
     protected void onStart(){
         super.onStart();
         mRVClienteAdapter.clearAndAddAll(new ClienteDAO().listCliente());
+
+        CargarDatosUsuario();
+    }
+
+    private void CargarDatosUsuario(){
+        Usuarios usuario;
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(Constantes.ARG_USUARIO)) {
+            usuario = getIntent().getParcelableExtra(Constantes.ARG_USUARIO);
+        } else {
+            usuario = null;
+        }
+
+        if(usuario!=null){
+            View header = nvMenu.getHeaderView(0);
+            tvNombreUsuario = (TextView) header.findViewById(R.id.tvNombreUsuario);
+            imgLogo = (ImageView)header.findViewById(R.id.imgLogo);
+
+            String fotoX;
+            tvNombreUsuario.setText(usuario.getUSnombre() + " " + usuario.getUSapellidos());
+            fotoX = usuario.getUSfoto();
+            int res = getResources().getIdentifier(fotoX, "drawable", this.getPackageName());
+            imgLogo.setImageResource(res);
+        }
     }
 }
