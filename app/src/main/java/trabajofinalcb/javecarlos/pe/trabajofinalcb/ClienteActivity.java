@@ -1,6 +1,7 @@
 package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -55,7 +56,7 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
         rvCliente.setLayoutManager(new LinearLayoutManager(ClienteActivity.this));
         rvCliente.setAdapter(mRVClienteAdapter);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //para el menu
@@ -95,7 +96,7 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
                 startActivity(intentOpcion);
             }
             if (item.getItemId() == R.id.navListaPedido) {
-                intentOpcion = new Intent(ClienteActivity.this, ClienteActivity.class);
+                intentOpcion = new Intent(ClienteActivity.this, PedidoActivity.class);
                 startActivity(intentOpcion);
             }
             if (item.getItemId() == R.id.navCerrarSesion) {
@@ -148,25 +149,36 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
         mRVClienteAdapter.clearAndAddAll(new ClienteDAO().listCliente());
 
         CargarDatosUsuario();
     }
 
-    private void CargarDatosUsuario(){
+    private void CargarDatosUsuario() {
         Usuarios usuario;
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(Constantes.ARG_USUARIO)) {
             usuario = getIntent().getParcelableExtra(Constantes.ARG_USUARIO);
         } else {
-            usuario = null;
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ClienteActivity.this);
+            if (PreferenceManager.getDefaultSharedPreferences(ClienteActivity.this).getBoolean("ingreso", false)) {
+                usuario = new Usuarios();
+                usuario.setUSusu(sp.getString("usuario", ""));
+                usuario.setUSclave(sp.getString("clave", ""));
+                usuario.setUSnombre(sp.getString("nombre", ""));
+                usuario.setUSapellidos(sp.getString("apellido", ""));
+                usuario.setUSfoto(sp.getString("foto", ""));
+                usuario.setUSarea(1);
+            } else {
+                usuario = null;
+            }
         }
 
-        if(usuario!=null){
+        if (usuario != null) {
             View header = nvMenu.getHeaderView(0);
             tvNombreUsuario = (TextView) header.findViewById(R.id.tvNombreUsuario);
-            imgLogo = (ImageView)header.findViewById(R.id.imgLogo);
+            imgLogo = (ImageView) header.findViewById(R.id.imgLogo);
 
             String fotoX;
             tvNombreUsuario.setText(usuario.getUSnombre() + " " + usuario.getUSapellidos());

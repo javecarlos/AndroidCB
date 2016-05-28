@@ -7,7 +7,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Saleday!"
         android:supportsRtl="true"
-        android:allowClearUserData="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <!--<intent-filter>-->
@@ -25,19 +24,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"
-            android:theme="@style/splash"></activity>
+            android:theme="@style/splash"/>
         <activity android:name=".ClienteActivity"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme"/>
         <activity android:name=".ClienteInfoActivity"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme"/>
         <activity android:name=".ClienteAddEditActivity"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme"/>
         <activity android:name=".ProductoActivity"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme"/>
         <activity android:name=".ProductoAddEditActivity"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme"/>
         <activity android:name=".ProductoInfoActivity"
-            android:theme="@style/MainTheme"></activity>
+            android:theme="@style/MainTheme"/>
+        <activity android:name=".PedidoActivity"
+            android:theme="@style/MainTheme"/>
     </application>
 
 </manifest>

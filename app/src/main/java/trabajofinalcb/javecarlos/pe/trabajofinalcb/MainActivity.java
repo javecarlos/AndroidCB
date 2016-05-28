@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements IRVMenuAdapter {
                 startActivity(intentOpcion);
                 break;
             case 3:
-                intentOpcion = new Intent(MainActivity.this, ClienteActivity.class);
+                intentOpcion = new Intent(MainActivity.this, PedidoActivity.class);
                 startActivity(intentOpcion);
                 break;
             case 4:

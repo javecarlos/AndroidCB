@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,10 +23,9 @@ import utils.Utils;
  * Created by carlosarmando on 09/05/2016.
  */
 public class ClienteAddEditActivity extends AppCompatActivity {
-    TextView tvClienteNombre;
-    EditText etContactoNombre, etContactoApellido, etContactoTelefono, etContactoCorreo, etClienteNombre,
+    private EditText etContactoNombre, etContactoApellido, etContactoTelefono, etContactoCorreo, etClienteNombre,
             etClienteDireccion, etClienteDistrito, etClienteReferencia;
-    ImageView imgClienteRegresar, imgClienteGuardar;
+    private Toolbar toolbar;
 
     Cliente cliente;
     boolean esNuevo;
@@ -33,101 +35,103 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente_add_edit);
 
-        CargarTextView();
         CargarEditText();
-        CargarImageView();
 
         cliente = ObtenerCliente();
         esNuevo = VerificarEsNuevo();
 
+        //para el toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         if (!esNuevo && cliente != null) {
             SetDataCliente(cliente);
+            getSupportActionBar().setTitle(cliente.getEmpresaNombre());
         } else {
-            tvClienteNombre.setText(R.string.texto_nuevo_cliente);
+            getSupportActionBar().setTitle(R.string.texto_nuevo_cliente);
         }
-
-        /*Cargar Eventos de los Iconos*/
-        imgClienteRegresar.setOnClickListener(imgClienteRegresarOnClickListener);
-        imgClienteGuardar.setOnClickListener(imgClienteGuardarOnClickListener);
     }
 
-    View.OnClickListener imgClienteRegresarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflamos el menú que va a aparecer en el Toolbar
+        getMenuInflater().inflate(R.menu.menu_add_edit_guardar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-            if (esNuevo) {
-                intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
-            } else {
-                intent = new Intent(ClienteAddEditActivity.this, ClienteInfoActivity.class);
-                intent.putExtra(Constantes.ARG_NUEVO_CLIENTE, false);
-                intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Capturo el click de la flecha hacia atrás
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else  //Capturo el click del guardar
+            if (item.getItemId() == R.id.btnGuardar) {
+                GuardarDatos();
+                return true;
             }
 
-            startActivity(intent);
-            finish();
-        }
-    };
+        return super.onOptionsItemSelected(item);
+    }
 
-    View.OnClickListener imgClienteGuardarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            String mensaje = ValidarDatos();
+    private void GuardarDatos(){
+        String mensaje = ValidarDatos();
 
-            if (mensaje.isEmpty()) {
-                if (cliente == null)
-                    cliente = new Cliente();
-                cliente.setContactoNombre(etContactoNombre.getText().toString().trim());
-                cliente.setContactoApellido(etContactoApellido.getText().toString().trim());
-                cliente.setContactoTelefono(Integer.parseInt(etContactoTelefono.getText().toString().trim()));
-                cliente.setContactoCorreo(etContactoCorreo.getText().toString().trim());
-                cliente.setEmpresaNombre(etClienteNombre.getText().toString().trim());
-                cliente.setEmpresaDireccion(etClienteDireccion.getText().toString().trim());
-                cliente.setEmpresaDistrito(etClienteDistrito.getText().toString().trim());
-                cliente.setEmpresaReferencia(etClienteReferencia.getText().toString().trim());
-                cliente.setEmpresaMap("");
+        if (mensaje.isEmpty()) {
+            if (cliente == null)
+                cliente = new Cliente();
+            cliente.setContactoNombre(etContactoNombre.getText().toString().trim());
+            cliente.setContactoApellido(etContactoApellido.getText().toString().trim());
+            cliente.setContactoTelefono(Integer.parseInt(etContactoTelefono.getText().toString().trim()));
+            cliente.setContactoCorreo(etContactoCorreo.getText().toString().trim());
+            cliente.setEmpresaNombre(etClienteNombre.getText().toString().trim());
+            cliente.setEmpresaDireccion(etClienteDireccion.getText().toString().trim());
+            cliente.setEmpresaDistrito(etClienteDistrito.getText().toString().trim());
+            cliente.setEmpresaReferencia(etClienteReferencia.getText().toString().trim());
+            cliente.setEmpresaMap("");
 
                 /*Logica para Guardar Cliente*/
-                if (esNuevo) {
-                    //Insert
-                    boolean isInserted = new ClienteDAO().insertCliente(cliente);
-                    if (isInserted) {
-                        Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " " +
-                                getResources().getString(R.string.texto_mensaje_insertado), Toast.LENGTH_LONG).show();
+            if (esNuevo) {
+                //Insert
+                boolean isInserted = new ClienteDAO().insertCliente(cliente);
+                if (isInserted) {
+                    Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " " +
+                            getResources().getString(R.string.texto_mensaje_insertado), Toast.LENGTH_LONG).show();
 
-                        Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        String errorInsercion = getResources().getString(R.string.error_insertar_cliente);
-                        String btnAceptar = getResources().getString(R.string.btnAceptar);
-                        new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.app_name)
-                                .setMessage(errorInsercion).setNegativeButton(btnAceptar, null).show();
-                    }
+                    Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    //Update
-                    boolean isUpdated = new ClienteDAO().updateCliente(cliente);
-                    if (isUpdated) {
-                        Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " " +
-                                getResources().getString(R.string.texto_mensaje_actualizado), Toast.LENGTH_LONG).show();
-
-                        Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        String errorActualizar = getResources().getString(R.string.error_actualizar_cliente);
-                        String btnAceptar = getResources().getString(R.string.btnAceptar);
-                        new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.app_name)
-                                .setMessage(errorActualizar).setNegativeButton(btnAceptar, null).show();
-                    }
+                    String errorInsercion = getResources().getString(R.string.error_insertar_cliente);
+                    String btnAceptar = getResources().getString(R.string.btnAceptar);
+                    new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.app_name)
+                            .setMessage(errorInsercion).setNegativeButton(btnAceptar, null).show();
                 }
             } else {
-                String btnAceptar = getResources().getString(R.string.btnAceptar);
-                new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.mensaje_error_cliente)
-                        .setMessage(mensaje).setNeutralButton(btnAceptar, null).show();
+                //Update
+                boolean isUpdated = new ClienteDAO().updateCliente(cliente);
+                if (isUpdated) {
+                    Toast.makeText(ClienteAddEditActivity.this, cliente.getEmpresaNombre() + " " +
+                            getResources().getString(R.string.texto_mensaje_actualizado), Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    String errorActualizar = getResources().getString(R.string.error_actualizar_cliente);
+                    String btnAceptar = getResources().getString(R.string.btnAceptar);
+                    new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.app_name)
+                            .setMessage(errorActualizar).setNegativeButton(btnAceptar, null).show();
+                }
             }
+        } else {
+            String btnAceptar = getResources().getString(R.string.btnAceptar);
+            new AlertDialog.Builder(ClienteAddEditActivity.this).setTitle(R.string.mensaje_error_cliente)
+                    .setMessage(mensaje).setNeutralButton(btnAceptar, null).show();
         }
-    };
+    }
 
     private String ValidarDatos() {
         String resultado = "";
@@ -221,7 +225,6 @@ public class ClienteAddEditActivity extends AppCompatActivity {
     }
 
     private void SetDataCliente(Cliente cliente) {
-        tvClienteNombre.setText(cliente.getEmpresaNombre());
         etContactoNombre.setText(cliente.getContactoNombre());
         etContactoApellido.setText(cliente.getContactoApellido());
         etContactoTelefono.setText(String.valueOf(cliente.getContactoTelefono()));
@@ -255,11 +258,6 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         return resultado;
     }
 
-    private void CargarImageView() {
-        imgClienteRegresar = (ImageView) findViewById(R.id.imgClienteRegresar);
-        imgClienteGuardar = (ImageView) findViewById(R.id.imgClienteGuardar);
-    }
-
     private void CargarEditText() {
         etContactoNombre = (EditText) findViewById(R.id.etContactoNombre);
         etContactoApellido = (EditText) findViewById(R.id.etContactoApellido);
@@ -269,9 +267,5 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         etClienteDireccion = (EditText) findViewById(R.id.etClienteDireccion);
         etClienteDistrito = (EditText) findViewById(R.id.etClienteDistrito);
         etClienteReferencia = (EditText) findViewById(R.id.etClienteReferencia);
-    }
-
-    private void CargarTextView() {
-        tvClienteNombre = (TextView) findViewById(R.id.tvClienteNombre);
     }
 }
