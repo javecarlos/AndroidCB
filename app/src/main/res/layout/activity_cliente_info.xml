@@ -38,7 +38,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Contacto"
+                    android:text="@string/texto_label_contacto"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -53,7 +53,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre"
+                    android:text="@string/texto_nombre_contacto"
                     android:textSize="12sp" />
 
                 <TextView
@@ -67,7 +67,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Apellido"
+                    android:text="@string/texto_apellido_contacto"
                     android:textSize="12sp" />
 
                 <TextView
@@ -81,7 +81,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Correo"
+                    android:text="@string/texto_correo_contacto"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -113,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="Telefono"
+                    android:text="@string/texto_telefono_contacto"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -145,7 +145,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Dirección"
+                    android:text="@string/texto_direccion_empresa"
                     android:textSize="12sp" />
 
                 <TextView
@@ -159,7 +159,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Distrito"
+                    android:text="@string/texto_distrito_empresa"
                     android:textSize="12sp" />
 
                 <TextView
@@ -173,7 +173,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Referencia"
+                    android:text="@string/texto_referencia_empresa"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -199,5 +199,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:text="Nuevo Pedido" />
+        android:text="@string/texto_nuevo_pedido" />
 </LinearLayout>

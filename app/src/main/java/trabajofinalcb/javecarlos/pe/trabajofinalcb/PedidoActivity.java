@@ -42,7 +42,7 @@ public class PedidoActivity extends AppCompatActivity implements IRVPedidoAdapte
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Pedidos");
+        getSupportActionBar().setTitle(getResources().getString(R.string.texto_menu_pedidos));
 
 //        mActionBarDrawerToggle = new ActionBarDrawerToggle(PedidoActivity.this, dlMenu, toolbar, R.string.app_name, R.string.app_name);
 

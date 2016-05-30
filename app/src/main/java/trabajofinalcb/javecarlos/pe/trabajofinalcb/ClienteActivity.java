@@ -61,7 +61,7 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
 
         //para el menu
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Clientes");
+        getSupportActionBar().setTitle(getResources().getString(R.string.texto_menu_clientes));
 
         dlMenu = (DrawerLayout) findViewById(R.id.dlClientes);
         mActionBarDrawerToggle = new ActionBarDrawerToggle(ClienteActivity.this, dlMenu, toolbar, R.string.app_name, R.string.app_name);

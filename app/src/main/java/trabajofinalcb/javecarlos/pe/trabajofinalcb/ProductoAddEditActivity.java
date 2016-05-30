@@ -3,17 +3,15 @@ package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompatSideChannelService;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import dao.ProductosDAO;
-import entities.Cliente;
 import entities.Productos;
 import utils.Constantes;
 
@@ -22,13 +20,11 @@ import utils.Constantes;
  */
 public class ProductoAddEditActivity extends AppCompatActivity {
 
-    private ImageView imgProductRegresar,imgProducGuardar;
-    private TextView tvProductoNombre;
-    private EditText etProductNombre,etCantStock,etPrecioUnid;
+    private EditText etProductNombre, etCantStock, etPrecioUnid;
     Productos productos;
     boolean esNuevo;
-    private boolean isUpdate;
-    String Productox,stockx,preciox;
+    String Productox, stockx, preciox;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,104 +33,111 @@ public class ProductoAddEditActivity extends AppCompatActivity {
         etProductNombre = (EditText) findViewById(R.id.etProductNombre);
         etCantStock = (EditText) findViewById(R.id.etCantStock);
         etPrecioUnid = (EditText) findViewById(R.id.etPrecioUnid);
-        tvProductoNombre = (TextView) findViewById(R.id.tvProductoNombre);
-        imgProducGuardar = (ImageView) findViewById(R.id.imgProducGuardar);
-        imgProductRegresar = (ImageView) findViewById(R.id.imgProductRegresar);
-        CargarTextView();
         productos = ObtenerProducto();
         esNuevo = VerificarEsNuevo();
 
+        //para el toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         if (!esNuevo && productos != null) {
             SetDataCliente(productos);
+            getSupportActionBar().setTitle(getResources().getString(R.string.texto_detalle_producto));
         } else {
-            tvProductoNombre.setText("Nuevo Producto");
+            getSupportActionBar().setTitle(getResources().getString(R.string.texto_nuevo_producto));
         }
-
-        imgProducGuardar.setOnClickListener(imgProducGuardarOnClickListener);
-        imgProductRegresar.setOnClickListener(imgProductRegresarOnClickListener);
     }
 
-    View.OnClickListener imgProducGuardarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            boolean isOK = true;
-            Productox=etProductNombre.getText().toString();
-            stockx=etCantStock.getText().toString();
-            preciox=etPrecioUnid.getText().toString();
-            if (Productox.trim().isEmpty()) {
-                etProductNombre.setError("Ingrese Nombre del Producto");
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //Inflamos el menú que va a aparecer en el Toolbar
+        getMenuInflater().inflate(R.menu.menu_add_edit_guardar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Capturo el click de la flecha hacia atrás
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        } else  //Capturo el click del guardar
+            if (item.getItemId() == R.id.btnGuardar) {
+                GuardarDatos();
+                return true;
+            }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void GuardarDatos() {
+        boolean isOK = true;
+        Productox = etProductNombre.getText().toString();
+        stockx = etCantStock.getText().toString();
+        preciox = etPrecioUnid.getText().toString();
+        if (Productox.trim().isEmpty()) {
+            etProductNombre.setError(getResources().getString(R.string.error_vacio_nombre_producto));
+            isOK = false;
+        } else {
+            if (Productox.trim().length() > 20) {
+                etProductNombre.setError(getResources().getString(R.string.error_maxlength_nombre_producto));
                 isOK = false;
-            }
-            else
-            {  if (Productox.trim().length() > 20)
-                {
-                    etProductNombre.setError("El tamaño de Nombre de Productos debe de ser menor de 20");
-                    isOK = false;
-                }
-            }
-
-            if (stockx.trim().isEmpty()) {
-                etCantStock.setError("Ingrese Stock");
-                isOK = false;
-            }
-            if (preciox.isEmpty()) {
-                etPrecioUnid.setError("Ingrese Precio");
-                isOK = false;
-            }
-            if (isOK) {
-                if (productos == null)
-                    productos = new Productos();
-                productos.setNombreP(Productox.trim());
-                productos.setStockP(Integer.parseInt(stockx.trim()));
-                productos.setPrecioP(Integer.parseInt(preciox.trim()));
-
-                if(esNuevo) {
-                    boolean isInserted = new ProductosDAO().insertProducto(productos);
-                    if (isInserted) {
-                        Toast.makeText(ProductoAddEditActivity.this, productos.getNombreP() + " ha sido registrado", Toast.LENGTH_LONG).show();
-                        finish();
-                    } else
-                        new AlertDialog.Builder(ProductoAddEditActivity.this).setTitle(R.string.app_name).setMessage("No se pudo regristrar en la base de datos").setNegativeButton("Aceptar", null).show();
-                }
-                else
-                {
-                    boolean isInserted = new ProductosDAO().updateProducto(productos);
-                    if (isInserted) {
-                        Toast.makeText(ProductoAddEditActivity.this, productos.getNombreP() + " ha sido Actualizada", Toast.LENGTH_LONG).show();
-                        finish();
-                    } else
-                        new AlertDialog.Builder(ProductoAddEditActivity.this).setTitle(R.string.app_name).setMessage("No se pudo Actualizar en la base de datos").setNegativeButton("Aceptar", null).show();
-
-
-                }
-
-
             }
         }
-    };
+
+        if (stockx.trim().isEmpty()) {
+            etCantStock.setError(getResources().getString(R.string.error_vacio_stock));
+            isOK = false;
+        }
+        if (preciox.isEmpty()) {
+            etPrecioUnid.setError(getResources().getString(R.string.error_vacio_precio_unitario));
+            isOK = false;
+        }
+        if (isOK) {
+            if (productos == null)
+                productos = new Productos();
+            productos.setNombreP(Productox.trim());
+            productos.setStockP(Integer.parseInt(stockx.trim()));
+            productos.setPrecioP(Integer.parseInt(preciox.trim()));
+
+            if (esNuevo) {
+                boolean isInserted = new ProductosDAO().insertProducto(productos);
+                if (isInserted) {
+                    Toast.makeText(ProductoAddEditActivity.this, productos.getNombreP() + " " +
+                            getResources().getString(R.string.texto_mensaje_insertado), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ProductoAddEditActivity.this, ProductoActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    String errorInsercion = getResources().getString(R.string.error_insertar_cliente);
+                    String btnAceptar = getResources().getString(R.string.btnAceptar);
+                    new AlertDialog.Builder(ProductoAddEditActivity.this).setTitle(R.string.app_name)
+                            .setMessage(errorInsercion).setNegativeButton(btnAceptar, null).show();
+                }
+            } else {
+                boolean isInserted = new ProductosDAO().updateProducto(productos);
+                if (isInserted) {
+                    Toast.makeText(ProductoAddEditActivity.this, productos.getNombreP() + " " +
+                            getResources().getString(R.string.texto_mensaje_actualizado), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(ProductoAddEditActivity.this, ProductoActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else{
+                    String errorActualizar = getResources().getString(R.string.error_actualizar_cliente);
+                    String btnAceptar = getResources().getString(R.string.btnAceptar);
+                    new AlertDialog.Builder(ProductoAddEditActivity.this).setTitle(R.string.app_name)
+                            .setMessage(errorActualizar).setNegativeButton(btnAceptar, null).show();
+                }
+            }
+        }
+    }
 
     private void SetDataCliente(Productos productos) {
-        tvProductoNombre.setText(ObtenerProducto().getNombreP());
         etProductNombre.setText(ObtenerProducto().getNombreP());
         etCantStock.setText(String.valueOf(ObtenerProducto().getStockP()));
         etPrecioUnid.setText(String.valueOf(ObtenerProducto().getPrecioP()));
     }
-
-    View.OnClickListener imgProductRegresarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent;
-            if (esNuevo) {
-                intent = new Intent(ProductoAddEditActivity.this, ProductoActivity.class);
-            } else {
-                intent = new Intent(ProductoAddEditActivity.this, ProductoInfoActivity.class);
-                intent.putExtra(Constantes.ARG_NUEVO_PRODUCTO, false);
-                intent.putExtra(Constantes.ARG_PRODUCTO, productos);
-            }
-            startActivity(intent);
-            finish();
-        }
-    };
 
     private boolean VerificarEsNuevo() {
         boolean resultado;
@@ -157,9 +160,5 @@ public class ProductoAddEditActivity extends AppCompatActivity {
             ProductoInfo = null;
         }
         return ProductoInfo;
-    }
-
-    private void CargarTextView() {
-        tvProductoNombre = (TextView) findViewById(R.id.tvProductoNombre);
     }
 }

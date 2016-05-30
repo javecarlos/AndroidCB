@@ -48,9 +48,9 @@ public class ClienteAddEditActivity extends AppCompatActivity {
 
         if (!esNuevo && cliente != null) {
             SetDataCliente(cliente);
-            getSupportActionBar().setTitle(cliente.getEmpresaNombre());
+            getSupportActionBar().setTitle(getResources().getString(R.string.texto_detalle_cliente));
         } else {
-            getSupportActionBar().setTitle(R.string.texto_nuevo_cliente);
+            getSupportActionBar().setTitle(getResources().getString(R.string.texto_nuevo_cliente));
         }
     }
 

@@ -4,6 +4,6 @@
     <item
         android:id="@+id/btnAgregar"
         android:icon="@drawable/ic_add_circle_outline_white_24dp"
-        android:title="Agregar"
+        android:title="@string/btnAgregar"
         app:showAsAction="ifRoom" />
 </menu>

@@ -62,7 +62,7 @@ public class ClienteInfoActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
-        } else  //Capturo el click del guardar
+        } else  //Capturo el click del editar
             if (item.getItemId() == R.id.btnEditar) {
                 boolean esNuevo;
                 Intent intent = new Intent(ClienteInfoActivity.this, ClienteAddEditActivity.class);

@@ -21,7 +21,7 @@
         android:id="@+id/tvNombreUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nombre de Usuario"
+        android:text="@string/texto_menu_nombre_usuario"
         android:gravity="center"
         android:padding="10dp"/>
 </LinearLayout>

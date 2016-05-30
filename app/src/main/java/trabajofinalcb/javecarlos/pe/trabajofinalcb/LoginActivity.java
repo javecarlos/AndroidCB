@@ -74,12 +74,12 @@ public class LoginActivity extends AppCompatActivity {
             password = edt_password.getText().toString();
 
             if (usuario.trim().isEmpty()) {
-                edt_usuario.setError("Ingrese Usuario");
+                edt_usuario.setError(getResources().getString(R.string.login_texto_error_vacio_usuario));
                 isOK = false;
             }
 
             if (password.trim().isEmpty()) {
-                edt_password.setError("Ingrese Clave");
+                edt_password.setError(getResources().getString(R.string.login_texto_error_vacio_clave));
                 isOK = false;
             }
 
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                     Ingresar(usu1);
                 } else {
                     edt_error.setVisibility(View.VISIBLE);
-                    edt_error.setText("Credenciales Incorrectas");
+                    edt_error.setText(getResources().getString(R.string.login_texto_error_credenciales_incorrectas));
                 }
             }
         }

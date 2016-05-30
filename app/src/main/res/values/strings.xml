@@ -2,9 +2,14 @@
     <string name="app_name">TrabajoFinalCB</string>
     <string name="logo">Logo</string>
     <string name="login_texto_usuario">Usuario</string>
+    <string name="login_texto_usuario_hint">Nombre</string>
     <string name="login_texto_clave">Clave</string>
+    <string name="login_texto_clave_hint">Contraseña</string>
     <string name="login_boton_entrar">Entrar</string>
     <string name="login_texto_imagen">Imagen</string>
+    <string name="login_texto_error_vacio_usuario">Ingrese Usuario</string>
+    <string name="login_texto_error_vacio_clave">Ingrese Clave</string>
+    <string name="login_texto_error_credenciales_incorrectas">Credenciales Incorrectas</string>
     <string name="login_olvido_clave"><u>Olvidé mi contraseña</u></string>
     <string name="login_crear_nueva_cuenta">Crear nueva cuenta</string>
     <string name="mensaje_error_cliente">Error Registro Cliente</string>
@@ -12,6 +17,10 @@
 
     <!-- Para nombre de botones -->
     <string name="btnAceptar">Aceptar</string>
+    <string name="btnGuardar">Guardar</string>
+    <string name="btnEditar">Editar</string>
+    <string name="btnAgregar">Agregar</string>
+    <string name="btnEliminar">Eliminar</string>
 
     <!--Para el registro de Cliente -->
     <string name="error_vacio_nombre_contacto">Ingrese su nombre de contacto</string>
@@ -32,8 +41,37 @@
     <string name="error_vacio_referencia_empresa">Ingrese su referencia de empresa</string>
     <string name="error_maxlength_referencia_empresa">Su distrito de empresa no puede tener más de 50 caracteres</string>
     <string name="texto_nuevo_cliente">Nuevo Cliente</string>
+    <string name="texto_detalle_cliente">Detalle Cliente</string>
     <string name="texto_mensaje_insertado">ha sido insertado</string>
     <string name="texto_mensaje_actualizado">ha sido actualizado</string>
     <string name="error_insertar_cliente">No se pudo insertar en la base de datos</string>
     <string name="error_actualizar_cliente">No se pudo actualizar en la base de datos</string>
+
+    <string name="texto_label_contacto">Contacto</string>
+    <string name="texto_nombre_contacto">Nombre</string>
+    <string name="texto_apellido_contacto">Apellido</string>"
+    <string name="texto_telefono_contacto">Teléfono</string>
+    <string name="texto_correo_contacto">Correo</string>
+    <string name="texto_nombre_empresa">Nombre de la empresa</string>
+    <string name="texto_direccion_empresa">Dirección</string>
+    <string name="texto_distrito_empresa">Distrito</string>
+    <string name="texto_referencia_empresa">Referencia</string>
+    <string name="texto_nuevo_pedido">Nuevo Pedido</string>
+
+    <string name="texto_label_producto">Producto</string>
+    <string name="texto_nombre_producto">Nombre Producto</string>
+    <string name="texto_cantidad_stock_producto">Cantidad Stock</string>
+    <string name="texto_cantidad_precio_unitario">Precio Unitario</string>
+    <string name="texto_detalle_producto">Detalle Producto</string>
+    <string name="texto_nuevo_producto">Nuevo Producto</string>
+    <string name="error_vacio_nombre_producto">Ingrese Nombre del Producto</string>
+    <string name="error_maxlength_nombre_producto">El tamaño de Nombre de Productos debe de ser menor de 20</string>
+    <string name="error_vacio_stock">Ingrese Stock</string>
+    <string name="error_vacio_precio_unitario">Ingrese Precio</string>
+
+    <string name="texto_menu_nombre_usuario">Nombre de Usuario</string>
+    <string name="texto_menu_clientes">Clientes</string>
+    <string name="texto_menu_productos">Productos</string>
+    <string name="texto_menu_pedidos">Pedidos</string>
+    <string name="texto_menu_cerrar_sesion">Cerrar Sesión</string>
 </resources>

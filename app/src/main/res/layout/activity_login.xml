@@ -27,7 +27,7 @@
             android:layout_marginRight="25pt"
             android:layout_marginTop="50pt"
             android:layout_marginBottom="5pt"
-            android:hint="Nombre"
+            android:hint="@string/login_texto_usuario_hint"
             android:textColor="#FAFCEF"
             android:textColorHint="#fff" />
 
@@ -39,7 +39,7 @@
             android:layout_marginLeft="25pt"
             android:layout_marginRight="25pt"
             android:layout_marginBottom="5pt"
-            android:hint="Contraseña"
+            android:hint="@string/login_texto_clave_hint"
             android:inputType="textPassword"
             android:textColor="#FAFCEF"
             android:textColorHint="#fff" />
