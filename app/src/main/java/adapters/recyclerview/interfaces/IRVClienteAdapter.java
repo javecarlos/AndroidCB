@@ -7,4 +7,5 @@ import entities.Cliente;
  */
 public interface IRVClienteAdapter {
     void onItemClick(Cliente cliente);
+    void onItemMapaClick(Cliente cliente);
 }

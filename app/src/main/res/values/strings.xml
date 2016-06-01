@@ -74,4 +74,6 @@
     <string name="texto_menu_productos">Productos</string>
     <string name="texto_menu_pedidos">Pedidos</string>
     <string name="texto_menu_cerrar_sesion">Cerrar Sesión</string>
+
+    <string name="google_api_key">AIzaSyBMpCQhI3enJpPzFXPMzYPTmRd7rTK4xLg</string>
 </resources>

@@ -149,6 +149,13 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
     }
 
     @Override
+    public void onItemMapaClick(Cliente cliente) {
+        Intent intent = new Intent(ClienteActivity.this, ClienteMapaActivity.class);
+        intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         mRVClienteAdapter.clearAndAddAll(new ClienteDAO().listCliente());

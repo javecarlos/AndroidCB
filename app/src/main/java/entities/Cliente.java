@@ -16,7 +16,8 @@ public class Cliente implements Parcelable {
     private String EmpresaDireccion;
     private String EmpresaDistrito;
     private String EmpresaReferencia;
-    private String EmpresaMap;
+    private String EmpresaLatitud;
+    private String EmpresaLongitud;
 
     public Cliente() {
 
@@ -24,7 +25,7 @@ public class Cliente implements Parcelable {
 
     public Cliente(int empresaId, String contactoNombre, String contactoApellido, int contactoTelefono, String contactoCorreo,
                    String empresaNombre, String empresaDireccion, String empresaDistrito, String empresaReferencia,
-                   String empresaMap) {
+                   String empresaLatitud, String empresaLongitud) {
         this.EmpresaId = empresaId;
         this.ContactoNombre = contactoNombre;
         this.ContactoApellido = contactoApellido;
@@ -34,7 +35,8 @@ public class Cliente implements Parcelable {
         this.EmpresaDireccion = empresaDireccion;
         this.EmpresaDistrito = empresaDistrito;
         this.EmpresaReferencia = empresaReferencia;
-        this.EmpresaMap = empresaMap;
+        this.EmpresaLatitud = empresaLatitud;
+        this.EmpresaLongitud = empresaLongitud;
     }
 
     public int getEmpresaId(){
@@ -109,13 +111,17 @@ public class Cliente implements Parcelable {
         EmpresaReferencia = empresaReferencia;
     }
 
-    public String getEmpresaMap() {
-        return EmpresaMap;
+    public String getEmpresaLatitud() {
+        return EmpresaLatitud;
     }
 
-    public void setEmpresaMap(String empresaMap) {
-        EmpresaMap = empresaMap;
+    public void setEmpresaLatitud(String empresaLatitud) {
+        EmpresaLatitud = empresaLatitud;
     }
+
+    public String getEmpresaLongitud() { return EmpresaLongitud; }
+
+    public void setEmpresaLongitud(String empresaLongitud) { EmpresaLongitud = empresaLongitud; }
 
     protected Cliente(Parcel in) {
         EmpresaId = in.readInt();
@@ -127,7 +133,8 @@ public class Cliente implements Parcelable {
         EmpresaDireccion = in.readString();
         EmpresaDistrito = in.readString();
         EmpresaReferencia = in.readString();
-        EmpresaMap = in.readString();
+        EmpresaLatitud = in.readString();
+        EmpresaLongitud = in.readString();
     }
 
     @Override
@@ -146,7 +153,8 @@ public class Cliente implements Parcelable {
         dest.writeString(EmpresaDireccion);
         dest.writeString(EmpresaDistrito);
         dest.writeString(EmpresaReferencia);
-        dest.writeString(EmpresaMap);
+        dest.writeString(EmpresaLatitud);
+        dest.writeString(EmpresaLongitud);
     }
 
     @SuppressWarnings("unused")

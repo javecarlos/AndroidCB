@@ -86,8 +86,11 @@ public class ClienteInfoActivity extends AppCompatActivity {
     View.OnClickListener imgClienteMapaOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast toast = Toast.makeText(ClienteInfoActivity.this, "IR AL MAPA", Toast.LENGTH_SHORT);
-            toast.show();
+//            Toast toast = Toast.makeText(ClienteInfoActivity.this, "IR AL MAPA", Toast.LENGTH_SHORT);
+//            toast.show();
+            Intent intent = new Intent(ClienteInfoActivity.this, ClienteMapaActivity.class);
+            intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+            startActivity(intent);
         }
     };
 

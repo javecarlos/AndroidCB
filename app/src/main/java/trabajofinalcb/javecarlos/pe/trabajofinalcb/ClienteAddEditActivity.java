@@ -90,7 +90,6 @@ public class ClienteAddEditActivity extends AppCompatActivity {
             cliente.setEmpresaDireccion(etClienteDireccion.getText().toString().trim());
             cliente.setEmpresaDistrito(etClienteDistrito.getText().toString().trim());
             cliente.setEmpresaReferencia(etClienteReferencia.getText().toString().trim());
-            cliente.setEmpresaMap("");
 
                 /*Logica para Guardar Cliente*/
             if (esNuevo) {

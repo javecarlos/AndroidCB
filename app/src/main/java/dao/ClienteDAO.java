@@ -97,6 +97,8 @@ public class ClienteDAO {
         cliente.setEmpresaDireccion(cursor.getString(cursor.getColumnIndex("DI_E_DIRECCION")));
         cliente.setEmpresaDistrito(cursor.getString(cursor.getColumnIndex("DI_E_DISTRITO")));
         cliente.setEmpresaReferencia(cursor.getString(cursor.getColumnIndex("UB_E_REFERENCIA")));
+        cliente.setEmpresaLatitud(cursor.getString(cursor.getColumnIndex("NU_LATITUD")));
+        cliente.setEmpresaLongitud(cursor.getString(cursor.getColumnIndex("NU_lONGITUD")));
 
         return cliente;
     }

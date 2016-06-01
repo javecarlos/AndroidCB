@@ -4,6 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,7 +59,18 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
 
         holder.itemView.setOnClickListener(itemViewOnClickListener);
         holder.itemView.setTag(position);
+
+        holder.imgClienteMapa.setOnClickListener(imgClienteMapaOnClickListener);
+        holder.imgClienteMapa.setTag(position);
     }
+
+    View.OnClickListener imgClienteMapaOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Cliente cliente = listaCliente.get((Integer) v.getTag());
+            _mIRVClienteAdapter.onItemMapaClick(cliente);
+        }
+    };
 
     View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
         @Override
@@ -74,6 +87,7 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
 
     static class RVClienteViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombreClienteRV, tvDireccionClienteRV, tvTelefonoClienteRV;
+        ImageView imgClienteMapa;
 
         public RVClienteViewHolder(View itemView) {
             super(itemView);
@@ -81,6 +95,7 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
             tvNombreClienteRV = (TextView) itemView.findViewById(R.id.tvNombreClienteRV);
             tvDireccionClienteRV = (TextView) itemView.findViewById(R.id.tvDireccionClienteRV);
             tvTelefonoClienteRV = (TextView) itemView.findViewById(R.id.tvTelefonoClienteRV);
+            imgClienteMapa = (ImageView)itemView.findViewById(R.id.imgClienteMapa);
         }
     }
 }
