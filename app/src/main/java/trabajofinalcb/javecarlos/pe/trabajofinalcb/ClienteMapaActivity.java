@@ -3,6 +3,9 @@ package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,6 +23,7 @@ import utils.Constantes;
  */
 public class ClienteMapaActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private Toolbar toolbar;
     private GoogleMap mGoogleMap;
     private Cliente cliente;
 
@@ -35,6 +39,29 @@ public class ClienteMapaActivity extends AppCompatActivity implements OnMapReady
         mapFragment.getMapAsync(ClienteMapaActivity.this);
 
         cliente = ObtenerCliente();
+        //para el toolbar
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(cliente!= null){
+            getSupportActionBar().setTitle(cliente.getEmpresaNombre());
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Capturo el click de la flecha hacia atrás
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private Cliente ObtenerCliente() {

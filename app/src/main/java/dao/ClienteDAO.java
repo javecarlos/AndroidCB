@@ -58,6 +58,8 @@ public class ClienteDAO {
         cv.put("DI_E_DIRECCION", cliente.getEmpresaDireccion());
         cv.put("DI_E_DISTRITO", cliente.getEmpresaDistrito());
         cv.put("UB_E_REFERENCIA", cliente.getEmpresaReferencia());
+        cv.put("NU_LATITUD", cliente.getEmpresaLatitud());
+        cv.put("NU_lONGITUD", cliente.getEmpresaLongitud());
 
         long inserto = DataBaseSingleton.getInstance().insert("EC_CLIENTES", null, cv);
 
@@ -74,6 +76,8 @@ public class ClienteDAO {
         cv.put("DI_E_DIRECCION", cliente.getEmpresaDireccion());
         cv.put("DI_E_DISTRITO", cliente.getEmpresaDistrito());
         cv.put("UB_E_REFERENCIA", cliente.getEmpresaReferencia());
+        cv.put("NU_LATITUD", cliente.getEmpresaLatitud());
+        cv.put("NU_lONGITUD", cliente.getEmpresaLongitud());
 
         int update = DataBaseSingleton.getInstance().update("EC_CLIENTES", cv, "ID_CLIENTE = ?", new String[]{String.valueOf(cliente.getEmpresaId())});
 

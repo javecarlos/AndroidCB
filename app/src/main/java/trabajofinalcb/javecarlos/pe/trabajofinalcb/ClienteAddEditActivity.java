@@ -14,6 +14,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import dao.ClienteDAO;
 import entities.Cliente;
 import utils.Constantes;
@@ -22,13 +30,15 @@ import utils.Utils;
 /**
  * Created by carlosarmando on 09/05/2016.
  */
-public class ClienteAddEditActivity extends AppCompatActivity {
+public class ClienteAddEditActivity extends AppCompatActivity implements OnMapReadyCallback {
     private EditText etContactoNombre, etContactoApellido, etContactoTelefono, etContactoCorreo, etClienteNombre,
             etClienteDireccion, etClienteDistrito, etClienteReferencia;
     private Toolbar toolbar;
 
     Cliente cliente;
     boolean esNuevo;
+    private GoogleMap mGoogleMap;
+    private LatLng mLatLng;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,13 +55,18 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         if (!esNuevo && cliente != null) {
             SetDataCliente(cliente);
             getSupportActionBar().setTitle(getResources().getString(R.string.texto_detalle_cliente));
         } else {
             getSupportActionBar().setTitle(getResources().getString(R.string.texto_nuevo_cliente));
         }
+
+        //Obtenego el fragmento del tipo mama declarado en mi Layout
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragMap);
+
+        //Le digo al fragmento mapa que cuando ya esté listo me avise
+        mapFragment.getMapAsync(ClienteAddEditActivity.this);
     }
 
     @Override
@@ -90,6 +105,8 @@ public class ClienteAddEditActivity extends AppCompatActivity {
             cliente.setEmpresaDireccion(etClienteDireccion.getText().toString().trim());
             cliente.setEmpresaDistrito(etClienteDistrito.getText().toString().trim());
             cliente.setEmpresaReferencia(etClienteReferencia.getText().toString().trim());
+            cliente.setEmpresaLatitud(String.valueOf(mLatLng.latitude));
+            cliente.setEmpresaLongitud(String.valueOf(mLatLng.longitude));
 
                 /*Logica para Guardar Cliente*/
             if (esNuevo) {
@@ -266,5 +283,54 @@ public class ClienteAddEditActivity extends AppCompatActivity {
         etClienteDireccion = (EditText) findViewById(R.id.etClienteDireccion);
         etClienteDistrito = (EditText) findViewById(R.id.etClienteDistrito);
         etClienteReferencia = (EditText) findViewById(R.id.etClienteReferencia);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.mGoogleMap = googleMap;
+        this.mGoogleMap.setOnMapClickListener(googleMapOnMapClickListener);
+        //googleMap.getUiSettings().setAllGesturesEnabled(false);
+        setMarker();
+    }
+
+    GoogleMap.OnMapClickListener googleMapOnMapClickListener = new GoogleMap.OnMapClickListener() {
+        @Override
+        public void onMapClick(LatLng latLng) {
+            mLatLng = latLng;
+            mGoogleMap.clear();
+            mGoogleMap.addMarker(new MarkerOptions().position(latLng));
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17));
+        }
+    };
+
+    private void setMarker(){
+        if (cliente != null){
+            mGoogleMap.clear();
+
+            LatLng marker = new LatLng(Double.parseDouble(cliente.getEmpresaLatitud()),Double.parseDouble(cliente.getEmpresaLongitud()));
+            mLatLng = marker;
+            mGoogleMap.addMarker(new MarkerOptions().position(marker));
+            mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker, 17));
+        }
+        else {
+            mGoogleMap.clear();
+            final LatLngBounds.Builder builder = LatLngBounds.builder();
+            double latitudInicio = Double.parseDouble(getResources().getString(R.string.latitud_default_map_inicio));
+            double longitudInicio = Double.parseDouble(getResources().getString(R.string.longitud_dafault_map_inicio));
+            double latitudFin = Double.parseDouble(getResources().getString(R.string.latitud_default_map_fin));
+            double longitudFin = Double.parseDouble(getResources().getString(R.string.longitud_dafault_map_fin));
+
+            LatLng latLngInicio = new LatLng(latitudInicio, longitudInicio);
+            LatLng latLngFin = new LatLng(latitudFin, longitudFin);
+
+            builder.include(latLngInicio).include(latLngFin);
+
+            mGoogleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                @Override
+                public void onMapLoaded() {
+                    mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 32));
+                }
+            });
+        }
     }
 }
