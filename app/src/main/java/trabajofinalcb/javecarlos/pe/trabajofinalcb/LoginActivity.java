@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 //            usuarioActual.setUSarea(1);
 //
 //            Ingresar(usuarioActual);
-//        }
+//        }d
     }
 
     View.OnClickListener btnEntrarOnClickListener = new View.OnClickListener() {

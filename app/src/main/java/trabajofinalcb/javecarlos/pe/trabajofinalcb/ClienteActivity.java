@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -22,6 +23,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import adapters.recyclerview.RVClienteAdapter;
 import adapters.recyclerview.interfaces.IRVClienteAdapter;
@@ -167,6 +171,7 @@ public class ClienteActivity extends AppCompatActivity implements SearchView.OnQ
         CargarDatosUsuario();
     }
 
+
     private void CargarDatosUsuario() {
         Usuarios usuario;
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(Constantes.ARG_USUARIO)) {
@@ -206,6 +211,20 @@ public class ClienteActivity extends AppCompatActivity implements SearchView.OnQ
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        return false;
+        final List<Cliente> filteredModelList = filter(new ClienteDAO().listCliente(), newText);
+        mRVClienteAdapter.setFilter(filteredModelList);
+        return true;
+    }
+    private List<Cliente> filter(List<Cliente> models, String query) {
+        query = query.toLowerCase();
+
+        final List<Cliente> filteredModelList = new ArrayList<>();
+        for (Cliente model : models) {
+            final String text = model.getEmpresaNombre().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
 }

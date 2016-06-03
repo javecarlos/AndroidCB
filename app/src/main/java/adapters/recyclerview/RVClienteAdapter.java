@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.Inflater;
 
 import adapters.recyclerview.interfaces.IRVClienteAdapter;
@@ -80,11 +81,15 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
         }
     };
 
+    public void setFilter(List<Cliente> mCliente){
+        listaCliente = new ArrayList<>();
+        listaCliente.addAll(mCliente);
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return listaCliente.size();
     }
-
     static class RVClienteViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombreClienteRV, tvDireccionClienteRV, tvTelefonoClienteRV;
         ImageView imgClienteMapa;
@@ -98,4 +103,5 @@ public class RVClienteAdapter extends RecyclerView.Adapter<RVClienteAdapter.RVCl
             imgClienteMapa = (ImageView)itemView.findViewById(R.id.imgClienteMapa);
         }
     }
+
 }
