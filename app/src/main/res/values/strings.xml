@@ -75,7 +75,7 @@
     <string name="texto_menu_pedidos">Pedidos</string>
     <string name="texto_menu_cerrar_sesion">Cerrar Sesión</string>
 
-    <string name="google_api_key">AIzaSyA_vOKL5yeEU7KoLLLxlDwhreF3EJySkEQ</string>
+    <string name="google_api_key">AIzaSyBMpCQhI3enJpPzFXPMzYPTmRd7rTK4xLg</string>
     <string name="latitud_default_map_inicio">-12.096524</string>
     <string name="longitud_dafault_map_inicio">-77.035528</string>
     <string name="latitud_default_map_fin">-12.087321</string>
