@@ -8,11 +8,13 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +34,7 @@ import utils.Constantes;
 /**
  * Created by carlosarmando on 05/05/2016.
  */
-public class ClienteActivity extends AppCompatActivity implements IRVClienteAdapter {
+public class ClienteActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, IRVClienteAdapter {
     RecyclerView rvCliente;
     RVClienteAdapter mRVClienteAdapter;
 
@@ -77,6 +79,8 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflamos el menú que va a aparecer en el Toolbar
         getMenuInflater().inflate(R.menu.menu_lista_cliente, menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -193,5 +197,15 @@ public class ClienteActivity extends AppCompatActivity implements IRVClienteAdap
             int res = getResources().getIdentifier(fotoX, "drawable", this.getPackageName());
             imgLogo.setImageResource(res);
         }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 }
