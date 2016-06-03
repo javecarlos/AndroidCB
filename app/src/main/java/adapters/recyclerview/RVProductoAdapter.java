@@ -5,11 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
 import java.util.ArrayList;
-import java.util.zip.Inflater;
-
+import java.util.List;
 import adapters.recyclerview.interfaces.IRVProductoAdapter;
 import entities.Productos;
 import trabajofinalcb.javecarlos.pe.trabajofinalcb.R;
@@ -74,7 +71,11 @@ public class RVProductoAdapter  extends RecyclerView.Adapter<RVProductoAdapter.R
     public int getItemCount() {
         return mLstProdcutos.size();
     }
-
+    public void setFilter(List<Productos> mProducto){
+        mLstProdcutos = new ArrayList<>();
+        mLstProdcutos.addAll(mProducto);
+        notifyDataSetChanged();
+    }
     class RVProductoAdapterViewHolder extends RecyclerView.ViewHolder {
         TextView tvIdProduct, tvNombreProductoRV,  tvStockRV,  tvPrecioRV;
 

@@ -3,9 +3,11 @@ package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,16 +15,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import adapters.recyclerview.RVProductoAdapter;
 import adapters.recyclerview.interfaces.IRVProductoAdapter;
 import dao.ProductosDAO;
+import entities.Cliente;
 import entities.Productos;
 import utils.Constantes;
 
 /**
  * Created by gosoriot on 10/05/2016.
  */
-public class ProductoActivity extends AppCompatActivity implements IRVProductoAdapter {
+public class ProductoActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, IRVProductoAdapter {
 
     private RVProductoAdapter mRVProductosAdapter;
     private RecyclerView rvProductos;
@@ -48,7 +54,9 @@ public class ProductoActivity extends AppCompatActivity implements IRVProductoAd
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflamos el menú que va a aparecer en el Toolbar
-        getMenuInflater().inflate(R.menu.menu_lista_cliente, menu);
+        getMenuInflater().inflate(R.menu.menu_lista_producto, menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search_productos));
+        searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -83,5 +91,29 @@ public class ProductoActivity extends AppCompatActivity implements IRVProductoAd
     protected void onStart() {
         super.onStart();
         mRVProductosAdapter.clearAndAddAll(new ProductosDAO().listProducto());
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        final List<Productos> filteredModelList = filter(new ProductosDAO().listProducto(), newText);
+        mRVProductosAdapter.setFilter(filteredModelList);
+        return true;
+    }
+    private List<Productos> filter(List<Productos> models, String query) {
+        query = query.toLowerCase();
+
+        final List<Productos> filteredModelList = new ArrayList<>();
+        for (Productos model : models) {
+            final String text = model.getNombreP().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(model);
+            }
+        }
+        return filteredModelList;
     }
 }

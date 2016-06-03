@@ -83,7 +83,7 @@ public class ClienteActivity extends AppCompatActivity implements SearchView.OnQ
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflamos el menú que va a aparecer en el Toolbar
         getMenuInflater().inflate(R.menu.menu_lista_cliente, menu);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.search_clientes));
         searchView.setOnQueryTextListener(this);
         return super.onCreateOptionsMenu(menu);
     }
