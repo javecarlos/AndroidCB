@@ -1,6 +1,8 @@
 package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -75,12 +77,19 @@ public class ClienteInfoActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    private boolean checkCallPermission() {
+        String permission = "android.permission.CALL_PHONE";
+        int res = getApplicationContext().checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
     View.OnClickListener imgClienteLlamarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast toast = Toast.makeText(ClienteInfoActivity.this, "LLAMAR AL TELEFONO", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(ClienteInfoActivity.this, "LLAMANDO", Toast.LENGTH_SHORT);
             toast.show();
+            if (checkCallPermission()) {
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + tvContactoTelefonoInfo.getText())));
+            }
         }
     };
     View.OnClickListener imgClienteMapaOnClickListener = new View.OnClickListener() {
