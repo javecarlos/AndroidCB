@@ -80,6 +80,7 @@
     <string name="longitud_dafault_map_inicio">-77.035528</string>
     <string name="latitud_default_map_fin">-12.087321</string>
     <string name="longitud_dafault_map_fin">-76.996592</string>
+    <string name="mensaje_sms">ha sido registrado en SaleDay</string>
 
 
 </resources>

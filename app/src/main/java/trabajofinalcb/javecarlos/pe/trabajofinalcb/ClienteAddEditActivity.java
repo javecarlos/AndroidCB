@@ -1,11 +1,14 @@
 package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,6 +122,10 @@ public class ClienteAddEditActivity extends AppCompatActivity implements OnMapRe
                     Intent intent = new Intent(ClienteAddEditActivity.this, ClienteActivity.class);
                     startActivity(intent);
                     finish();
+                    if (checkCallPermission()) {
+                        String msj = cliente.getEmpresaNombre() + " " + R.string.mensaje_sms;
+                        sendSMS(etContactoTelefono.getText().toString().trim(),msj);
+                    }
                 } else {
                     String errorInsercion = getResources().getString(R.string.error_insertar_cliente);
                     String btnAceptar = getResources().getString(R.string.btnAceptar);
@@ -148,7 +155,15 @@ public class ClienteAddEditActivity extends AppCompatActivity implements OnMapRe
                     .setMessage(mensaje).setNeutralButton(btnAceptar, null).show();
         }
     }
-
+    private void sendSMS(String phoneNumber, String message){
+        SmsManager sms =SmsManager.getDefault();
+        sms.sendTextMessage(phoneNumber,null,message,null,null);
+    }
+    private boolean checkCallPermission() {
+        String permission = "android.permission.SEND_SMS";
+        int res = getApplicationContext().checkCallingOrSelfPermission(permission);
+        return (res == PackageManager.PERMISSION_GRANTED);
+    }
     private String ValidarDatos() {
         String resultado = "";
 
