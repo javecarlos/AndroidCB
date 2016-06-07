@@ -252,6 +252,10 @@ public class ClienteAddEditActivity extends AppCompatActivity implements OnMapRe
             return resultado;
         }
 
+        if (mLatLng == null){
+            resultado = getResources().getString(R.string.error_vacio_mapa_empresa);
+        }
+
         return resultado;
     }
 

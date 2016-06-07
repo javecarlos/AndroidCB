@@ -40,6 +40,7 @@
     <string name="error_maxlength_distrito_empresa">Su distrito de empresa no puede tener más de 50 caracteres</string>
     <string name="error_vacio_referencia_empresa">Ingrese su referencia de empresa</string>
     <string name="error_maxlength_referencia_empresa">Su distrito de empresa no puede tener más de 50 caracteres</string>
+    <string name="error_vacio_mapa_empresa">Debe seleccionar una ubicacion en el mapa</string>
     <string name="texto_nuevo_cliente">Nuevo Cliente</string>
     <string name="texto_detalle_cliente">Detalle Cliente</string>
     <string name="texto_mensaje_insertado">ha sido insertado</string>
