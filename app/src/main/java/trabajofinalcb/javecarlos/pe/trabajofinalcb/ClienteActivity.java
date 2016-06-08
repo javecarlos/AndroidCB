@@ -104,7 +104,7 @@ public class ClienteActivity extends AppCompatActivity implements SearchView.OnQ
                 startActivity(intentOpcion);
             }
             if (item.getItemId() == R.id.navListaPedido) {
-                intentOpcion = new Intent(ClienteActivity.this, PedidoActivity.class);
+                intentOpcion = new Intent(ClienteActivity.this, PedidoCabActivity.class);
                 startActivity(intentOpcion);
             }
             if (item.getItemId() == R.id.navCerrarSesion) {

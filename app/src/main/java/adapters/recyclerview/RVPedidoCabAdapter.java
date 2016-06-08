@@ -8,31 +8,31 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import adapters.recyclerview.interfaces.IRVPedidoAdapter;
-import entities.PedidoRV;
+import adapters.recyclerview.interfaces.IRVPedidoCabAdapter;
+import entities.PedidoCab;
 import trabajofinalcb.javecarlos.pe.trabajofinalcb.R;
 
-public class RVPedidoAdapter extends RecyclerView.Adapter<RVPedidoAdapter.RVPedidoViewHolder> {
-    private ArrayList<PedidoRV> listaPedido;
-    private IRVPedidoAdapter _mIRVPedidoAdapter;
+public class RVPedidoCabAdapter extends RecyclerView.Adapter<RVPedidoCabAdapter.RVPedidoViewHolder> {
+    private ArrayList<PedidoCab> listaPedido;
+    private IRVPedidoCabAdapter _mIRVPedidoCabAdapter;
 
-    public RVPedidoAdapter(IRVPedidoAdapter mIRVPedidoAdapter) {
+    public RVPedidoCabAdapter(IRVPedidoCabAdapter mIRVPedidoCabAdapter) {
         listaPedido = new ArrayList<>();
-        _mIRVPedidoAdapter = mIRVPedidoAdapter;
+        _mIRVPedidoCabAdapter = mIRVPedidoCabAdapter;
     }
 
-    public void add(PedidoRV pedido) {
+    public void add(PedidoCab pedido) {
         listaPedido.add(pedido);
         notifyDataSetChanged();
     }
 
-    public void addAll(ArrayList<PedidoRV> lstPedido) {
+    public void addAll(ArrayList<PedidoCab> lstPedido) {
         int position = listaPedido.size();
         listaPedido.addAll(lstPedido);
         notifyItemRangeInserted(position, lstPedido.size());
     }
 
-    public void clearAndAddAll(ArrayList<PedidoRV> lstPedido) {
+    public void clearAndAddAll(ArrayList<PedidoCab> lstPedido) {
         listaPedido.clear();
         listaPedido.addAll(lstPedido);
         notifyDataSetChanged();
@@ -40,17 +40,17 @@ public class RVPedidoAdapter extends RecyclerView.Adapter<RVPedidoAdapter.RVPedi
 
     @Override
     public RVPedidoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new RVPedidoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_pedido_rv, parent, false));
+        return new RVPedidoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_pedido_cab_rv, parent, false));
     }
 
     @Override
     public void onBindViewHolder(RVPedidoViewHolder holder, int position) {
-        PedidoRV pedido = listaPedido.get(position);
+        PedidoCab pedido = listaPedido.get(position);
 
-        //holder.tvIdPedidoRV.setText(String.valueOf(pedido.getIdPedido()));
-        holder.tvClienteRV.setText(pedido.getCliente());
-        holder.tvProductoRV.setText(String.valueOf(pedido.getProducto())+" producto(s)");
-        holder.tvTotalRV.setText("S/. "+String.valueOf(pedido.getTotal()));
+        holder.tvIdPedidoRV.setText("Pedido : "+String.valueOf(pedido.getIdPedido()));
+        holder.tvClienteRV.setText("Cliente : "+pedido.getCliente());
+        holder.tvProductoRV.setText(String.valueOf(pedido.getCantProducto())+" producto(s)");
+        holder.tvTotalRV.setText("S/. "+String.valueOf(pedido.getMontoTotal()));
 
         holder.itemView.setOnClickListener(itemViewOnClickListener);
         holder.itemView.setTag(position);
@@ -59,8 +59,8 @@ public class RVPedidoAdapter extends RecyclerView.Adapter<RVPedidoAdapter.RVPedi
     View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            PedidoRV pedido = listaPedido.get((Integer) v.getTag());
-            _mIRVPedidoAdapter.onItemClick(pedido);
+            PedidoCab pedido = listaPedido.get((Integer) v.getTag());
+            _mIRVPedidoCabAdapter.onItemClick(pedido);
         }
     };
 
@@ -75,9 +75,9 @@ public class RVPedidoAdapter extends RecyclerView.Adapter<RVPedidoAdapter.RVPedi
         public RVPedidoViewHolder(View itemView) {
             super(itemView);
 
+            tvIdPedidoRV = (TextView) itemView.findViewById(R.id.tvIdPedidoRV);
             tvClienteRV = (TextView) itemView.findViewById(R.id.tvClienteRV);
             tvProductoRV = (TextView) itemView.findViewById(R.id.tvProductoRV);
-            //tvIdPedidoRV = (TextView) itemView.findViewById(R.id.tvIdPedidoRV);
             tvTotalRV = (TextView) itemView.findViewById(R.id.tvTotalRV);
         }
     }

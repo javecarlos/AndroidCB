@@ -5,50 +5,17 @@
     android:background="@drawable/bk3"
     android:orientation="vertical">
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/blanco"
-        app:theme="@style/ToolbarColoredBackArrow"/>
-    <TextView
-        android:id="@+id/tvIdPedido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="2dp"
-        android:textStyle="bold"
-        android:text="Pedido : 1"
-        android:textSize="15dp"
-        android:background="#ffff"/>
-    <TextView
-        android:id="@+id/tvClientePedido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="2dp"
-        android:text="Nombre del Cliente"
-        android:textStyle="bold"
-        android:textSize="15dp"
-        android:background="#ffff"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="2dp"
-        android:text="Productos del Carrito"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:background="#ffff"/>
-    <android.support.v7.widget.RecyclerView
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:minHeight="?attr/actionBarSize"
+            app:titleTextColor="@color/blanco"
+            app:theme="@style/ToolbarColoredBackArrow"/>
+       <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/rvPedidosDet">
+        android:id="@+id/rvProductos">
     </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"

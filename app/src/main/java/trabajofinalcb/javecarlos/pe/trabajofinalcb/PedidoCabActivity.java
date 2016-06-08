@@ -9,25 +9,23 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import adapters.recyclerview.RVPedidoAdapter;
-import adapters.recyclerview.interfaces.IRVPedidoAdapter;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import adapters.recyclerview.RVPedidoCabAdapter;
+import adapters.recyclerview.interfaces.IRVPedidoCabAdapter;
 import dao.PedidoDAO;
-import entities.PedidoRV;
+import entities.PedidoCab;
 import utils.Constantes;
 
-/**
- * Created by gosoriot on 10/05/2016.
- */
-public class PedidoActivity extends AppCompatActivity implements IRVPedidoAdapter {
+public class PedidoCabActivity extends AppCompatActivity implements IRVPedidoCabAdapter {
 
-    private RVPedidoAdapter mRVPedidoAdapter;
+    private RVPedidoCabAdapter mRVPedidoCabAdapter;
     private RecyclerView rvPedido;
 
     private Toolbar toolbar;
 
-    //private GoogleApiClient client;
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,34 +33,19 @@ public class PedidoActivity extends AppCompatActivity implements IRVPedidoAdapte
         setContentView(R.layout.activity_lista_pedidos);
         rvPedido = (RecyclerView) findViewById(R.id.rvPedidos);
 
-        rvPedido.setLayoutManager(new LinearLayoutManager(PedidoActivity.this));
-        mRVPedidoAdapter = new RVPedidoAdapter(PedidoActivity.this);
-        rvPedido.setAdapter(mRVPedidoAdapter);
+        rvPedido.setLayoutManager(new LinearLayoutManager(PedidoCabActivity.this));
+        mRVPedidoCabAdapter = new RVPedidoCabAdapter(PedidoCabActivity.this);
+        rvPedido.setAdapter(mRVPedidoCabAdapter);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getResources().getString(R.string.texto_menu_pedidos));
-
-//        mActionBarDrawerToggle = new ActionBarDrawerToggle(PedidoActivity.this, dlMenu, toolbar, R.string.app_name, R.string.app_name);
-
-        //      dlMenu.addDrawerListener(mActionBarDrawerToggle);
+        getSupportActionBar().setTitle("Pedidos");
     }
 
-    View.OnClickListener imgPedidoNuevoOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            PedidoRV pedido = null;
-            Intent intent = new Intent(PedidoActivity.this, ClienteAddEditActivity.class);
-            intent.putExtra(Constantes.ARG_NUEVO_PEDIDO, true);
-            intent.putExtra(Constantes.ARG_PEDIDO, pedido);
-            startActivity(intent);
-        }
-    };
-
     @Override
-    public void onItemClick(PedidoRV pedido) {
-        Intent intent = new Intent(PedidoActivity.this, ClienteInfoActivity.class);
+    public void onItemClick(PedidoCab pedido) {
+        Intent intent = new Intent(PedidoCabActivity.this, PedidoInfoActivity.class);
         intent.putExtra(Constantes.ARG_PEDIDO, pedido);
         startActivity(intent);
     }
@@ -70,7 +53,7 @@ public class PedidoActivity extends AppCompatActivity implements IRVPedidoAdapte
     @Override
     protected void onStart() {
         super.onStart();
-        mRVPedidoAdapter.clearAndAddAll(new PedidoDAO().listPedido());
+        mRVPedidoCabAdapter.clearAndAddAll(new PedidoDAO().lstPedidoCab());
     }
 
     //para el toolbar
@@ -88,9 +71,7 @@ public class PedidoActivity extends AppCompatActivity implements IRVPedidoAdapte
             return true;
         } else  //Capturo el click del agregar
             if (item.getItemId() == R.id.btnAgregar) {
-                Intent intent = new Intent(PedidoActivity.this, ClienteAddEditActivity.class);
-                //intent.putExtra(Constantes.ARG_NUEVO_CLIENTE, Pedido);
-                //intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+                Intent intent = new Intent(PedidoCabActivity.this, PedidoNuevoActivity.class);
                 startActivity(intent);
                 return true;
             }
