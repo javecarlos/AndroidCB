@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class PedidoDet implements Parcelable {
+    private int IdProducto;
     private String NombreProd;
-    private String DescripcionProd;
     private double Cantidad;
     private double Precio;
     private double SubTotal;
@@ -21,12 +21,12 @@ public class PedidoDet implements Parcelable {
         NombreProd = nombreProd;
     }
 
-    public String getDescripcionProd() {
-        return DescripcionProd;
+    public int getIdProducto() {
+        return IdProducto;
     }
 
-    public void setDescripcionProd(String descripcionProd) {
-        DescripcionProd = descripcionProd;
+    public void setIdProducto(int idProducto) {
+        IdProducto = idProducto;
     }
 
     public double getCantidad() {
@@ -55,7 +55,7 @@ public class PedidoDet implements Parcelable {
 
     protected PedidoDet(Parcel in) {
         NombreProd = in.readString();
-        DescripcionProd = in.readString();
+        IdProducto = in.readInt();
         Cantidad = in.readDouble();
         Precio = in.readDouble();
         SubTotal = in.readDouble();
@@ -69,7 +69,7 @@ public class PedidoDet implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(NombreProd);
-        dest.writeString(DescripcionProd);
+        dest.writeInt(IdProducto);
         dest.writeDouble(Cantidad);
         dest.writeDouble(Precio);
         dest.writeDouble(SubTotal);

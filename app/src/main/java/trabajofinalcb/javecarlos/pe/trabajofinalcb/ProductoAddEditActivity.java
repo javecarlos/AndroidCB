@@ -99,7 +99,7 @@ public class ProductoAddEditActivity extends AppCompatActivity {
                 productos = new Productos();
             productos.setNombreP(Productox.trim());
             productos.setStockP(Integer.parseInt(stockx.trim()));
-            productos.setPrecioP(Integer.parseInt(preciox.trim()));
+            productos.setPrecioP(Double.parseDouble(preciox.trim()));
 
             if (esNuevo) {
                 boolean isInserted = new ProductosDAO().insertProducto(productos);

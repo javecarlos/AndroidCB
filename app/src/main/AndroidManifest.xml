@@ -62,6 +62,8 @@
             android:theme="@style/MainTheme"></activity>
         <activity android:name=".PedidoNuevoActivity"
             android:theme="@style/MainTheme"></activity>
+        <activity android:name=".PedidoProductosActivity"
+            android:theme="@style/MainTheme"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

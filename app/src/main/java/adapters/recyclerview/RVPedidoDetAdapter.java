@@ -48,7 +48,7 @@ public class RVPedidoDetAdapter extends RecyclerView.Adapter<RVPedidoDetAdapter.
         PedidoDet pedido = listaPedido.get(position);
 
         holder.tvNombreProdRV.setText(pedido.getNombreProd());
-        holder.tvDescripcionProdRV.setText(pedido.getDescripcionProd());
+        //holder.tvDescripcionProdRV.setText(pedido.getDescripcionProd());
         holder.tvCantidadRV.setText("Cantidad : "+String.valueOf(pedido.getCantidad()));
         holder.tvMontoRV.setText("Monto : S/. "+String.valueOf(pedido.getSubTotal()));
 
@@ -76,7 +76,7 @@ public class RVPedidoDetAdapter extends RecyclerView.Adapter<RVPedidoDetAdapter.
             super(itemView);
 
             tvNombreProdRV = (TextView) itemView.findViewById(R.id.tvNombreProductoRV);
-            tvDescripcionProdRV = (TextView) itemView.findViewById(R.id.tvDescripcionProductoRV);
+            //tvDescripcionProdRV = (TextView) itemView.findViewById(R.id.tvDescripcionProductoRV);
             tvCantidadRV = (TextView) itemView.findViewById(R.id.tvCantidadRV);
             tvMontoRV = (TextView) itemView.findViewById(R.id.tvMontoRV);
         }

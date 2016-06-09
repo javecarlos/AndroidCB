@@ -15,8 +15,11 @@ import trabajofinalcb.javecarlos.pe.trabajofinalcb.R;
 
 public class SPAdapter extends ArrayAdapter<Cliente> {
 
+    private List<Cliente> lista;
+
     public SPAdapter(Context context, List<Cliente> objects) {
         super(context, 0, objects);
+        lista = objects;
     }
 
     @Override
@@ -42,5 +45,14 @@ public class SPAdapter extends ArrayAdapter<Cliente> {
         tv.setText(cliente.getEmpresaNombre());
 
         return convertView;
+    }
+
+    public int getItemIndexById(int id) {
+        for (Cliente item : this.lista) {
+            if(item.getEmpresaId() == id){
+                return this.lista.indexOf(item);
+            }
+        }
+        return 0;
     }
 }

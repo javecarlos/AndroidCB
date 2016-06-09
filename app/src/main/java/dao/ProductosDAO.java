@@ -36,7 +36,7 @@ public class ProductosDAO {
         productos.setIdProducto(cursor.getInt(cursor.getColumnIndex("ID_PRODUCTO")));
         productos.setNombreP(cursor.getString(cursor.getColumnIndex("NO_NOMBRE")));
         productos.setStockP(cursor.getInt(cursor.getColumnIndex("CA_STOCK")));
-        productos.setPrecioP(cursor.getInt(cursor.getColumnIndex("PR_PRECIO")));
+        productos.setPrecioP(cursor.getDouble(cursor.getColumnIndex("PR_PRECIO")));
         return productos;
     }
 

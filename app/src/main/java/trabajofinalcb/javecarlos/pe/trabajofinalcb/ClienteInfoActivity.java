@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import utils.Constantes;
 public class ClienteInfoActivity extends AppCompatActivity {
     private TextView tvContactoNombreInfo, tvContactoApellidoInfo, tvContactoCorreoInfo, tvContactoTelefonoInfo,
             tvClienteDireccionInfo, tvClienteDistritoInfo, tvClienteReferenciaInfo;
+    private Button btnNuevoPedido;
     private ImageView imgClienteLlamar, imgClienteMapa;
     private Toolbar toolbar;
     private Cliente cliente;
@@ -33,9 +35,11 @@ public class ClienteInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cliente_info);
 
         CargarTextView();
+        CargarButton();
         CargarImageView();
 
-        /*Cargar Eventos Iconos*/
+        /*Cargar Eventos Boton e Iconos*/
+        btnNuevoPedido.setOnClickListener(btnNuevoPedidoOnClickListener);
         imgClienteLlamar.setOnClickListener(imgClienteLlamarOnClickListener);
         imgClienteMapa.setOnClickListener(imgClienteMapaOnClickListener);
 
@@ -77,11 +81,22 @@ public class ClienteInfoActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
     private boolean checkCallPermission() {
         String permission = "android.permission.CALL_PHONE";
         int res = getApplicationContext().checkCallingOrSelfPermission(permission);
         return (res == PackageManager.PERMISSION_GRANTED);
     }
+
+    View.OnClickListener btnNuevoPedidoOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(ClienteInfoActivity.this, PedidoNuevoActivity.class);
+            intent.putExtra(Constantes.ARG_CLIENTE, cliente);
+            startActivity(intent);
+        }
+    };
+
     View.OnClickListener imgClienteLlamarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -122,6 +137,10 @@ public class ClienteInfoActivity extends AppCompatActivity {
         tvClienteDireccionInfo = (TextView) findViewById(R.id.tvClienteDireccionInfo);
         tvClienteDistritoInfo = (TextView) findViewById(R.id.tvClienteDistritoInfo);
         tvClienteReferenciaInfo = (TextView) findViewById(R.id.tvClienteReferenciaInfo);
+    }
+
+    private void CargarButton(){
+        btnNuevoPedido = (Button)findViewById(R.id.btnNuevoPedido);
     }
 
     private void CargarImageView() {

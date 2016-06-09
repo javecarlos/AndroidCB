@@ -54,7 +54,7 @@ public class RVProductoAdapter  extends RecyclerView.Adapter<RVProductoAdapter.R
         holder.tvIdProduct.setText(codigo.substring(String.valueOf(productos.getIdProducto()).length()));
         holder.tvNombreProductoRV.setText(productos.getNombreP());
         holder.tvPrecioRV.setText(String.valueOf(productos.getPrecioP()));
-        holder.tvStockRV.setText(String.valueOf(productos.getStockP()));
+        //holder.tvStockRV.setText(String.valueOf(productos.getStockP()));
        holder.itemView.setTag(position);
        holder.itemView.setOnClickListener(itemViewOnClickListener);
     }
@@ -83,7 +83,7 @@ public class RVProductoAdapter  extends RecyclerView.Adapter<RVProductoAdapter.R
             super(itemView);
             tvIdProduct = (TextView) itemView.findViewById(R.id.tvIdProduct);
             tvNombreProductoRV = (TextView) itemView.findViewById(R.id.tvNombreProductoRV);
-            tvStockRV = (TextView) itemView.findViewById(R.id.tvStockRV);
+            //tvStockRV = (TextView) itemView.findViewById(R.id.tvStockRV);
             tvPrecioRV = (TextView) itemView.findViewById(R.id.tvPrecioRV);
         }
     }

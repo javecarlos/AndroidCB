@@ -8,7 +8,7 @@ import android.os.Parcelable;
 public class Productos implements Parcelable {
     private int IdProducto;
     private String NombreP;
-    private int PrecioP;
+    private Double PrecioP;
     private int StockP;
 
 
@@ -31,10 +31,10 @@ public class Productos implements Parcelable {
     }
 
 
-    public int getPrecioP() {
+    public Double getPrecioP() {
         return PrecioP;
     }
-    public void setPrecioP(int PrecioP) {
+    public void setPrecioP(Double PrecioP) {
         this.PrecioP = PrecioP;
     }
 
@@ -49,7 +49,7 @@ public class Productos implements Parcelable {
     protected Productos(Parcel in) {
         IdProducto= in.readInt();
         NombreP = in.readString();
-        PrecioP = in.readInt();
+        PrecioP = in.readDouble();
         StockP = in.readInt();
     }
 
@@ -62,7 +62,7 @@ public class Productos implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(IdProducto);
         dest.writeString(NombreP);
-        dest.writeInt(PrecioP);
+        dest.writeDouble(PrecioP);
         dest.writeInt(StockP);
     }
 
