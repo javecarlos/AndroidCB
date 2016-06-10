@@ -68,7 +68,7 @@ public class PedidoProductosActivity extends AppCompatActivity implements IRVPro
                 if (idProducto < 1) {
                     resp = getResources().getString(R.string.error_escoger_producto_pedido);
                 }
-                Toast.makeText(PedidoProductosActivity.this,resp,Toast.LENGTH_LONG).show();
+                Toast.makeText(PedidoProductosActivity.this,getResources().getString(R.string.texto_producto_agregado_carrito),Toast.LENGTH_LONG).show();
                 if(resp.equals("OK")) {
                     Intent intent = new Intent(PedidoProductosActivity.this, PedidoNuevoActivity.class);
                     intent.putExtra("pCantidad", etCantidad.getText().toString());

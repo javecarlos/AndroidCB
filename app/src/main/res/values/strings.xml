@@ -88,6 +88,7 @@
     <string name="texto_label_pedido_seleccionar">Seleccione Producto</string>
     <string name="error_cantidad_pedido">Falta Cantidad</string>
     <string name="error_escoger_producto_pedido">Escoger Producto</string>
+    <string name="texto_producto_agregado_carrito">Producto Agregado al carrito</string>
 
     <string name="texto_menu_nombre_usuario">Nombre de Usuario</string>
     <string name="texto_menu_clientes">Clientes</string>
