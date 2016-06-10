@@ -21,25 +21,23 @@ import entities.PedidoDet;
 import utils.Constantes;
 
 public class PedidoInfoActivity extends AppCompatActivity implements IRVPedidoDetAdapter {
-    PedidoCab pc=new PedidoCab();
-    PedidoDAO pd=new PedidoDAO();
+    PedidoCab pc = new PedidoCab();
+    PedidoDAO pd = new PedidoDAO();
     private RVPedidoDetAdapter mRVPedidoDetAdapter;
     private RecyclerView rvPedidoDet;
 
-    private TextView tvTotal,tvIdPedido,tvClientePedido;
+    private TextView tvTotal, tvIdPedido, tvClientePedido;
 
     private Toolbar toolbar;
-
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedido_info);
         rvPedidoDet = (RecyclerView) findViewById(R.id.rvPedidosDet);
-        tvTotal= (TextView) findViewById(R.id.tvTotalPedidoInfo);
-        tvIdPedido= (TextView) findViewById(R.id.tvIdPedido);
-        tvClientePedido= (TextView) findViewById(R.id.tvClientePedido);
+        tvTotal = (TextView) findViewById(R.id.tvTotalPedidoInfo);
+        tvIdPedido = (TextView) findViewById(R.id.tvIdPedido);
+        tvClientePedido = (TextView) findViewById(R.id.tvClientePedido);
 
         rvPedidoDet.setLayoutManager(new LinearLayoutManager(PedidoInfoActivity.this));
         mRVPedidoDetAdapter = new RVPedidoDetAdapter(PedidoInfoActivity.this);
@@ -48,7 +46,7 @@ public class PedidoInfoActivity extends AppCompatActivity implements IRVPedidoDe
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Detalle del Pedido");
+        getSupportActionBar().setTitle(getResources().getString(R.string.texto_label_pedido_detalle));
     }
 
     @Override
@@ -61,8 +59,8 @@ public class PedidoInfoActivity extends AppCompatActivity implements IRVPedidoDe
         super.onStart();
         pc = getIntent().getParcelableExtra(Constantes.ARG_PEDIDO);
         tvTotal.setText(String.valueOf(pc.getMontoTotal()));
-        tvIdPedido.setText("Pedido : "+String.valueOf(pc.getIdPedido()));
-        tvClientePedido.setText("Cliente : "+String.valueOf(pc.getCliente()));
+        tvIdPedido.setText(getResources().getString(R.string.texto_label_pedido) + ": " + String.valueOf(pc.getIdPedido()));
+        tvClientePedido.setText(getResources().getString(R.string.texto_label_pedido_cliente) + ": " + String.valueOf(pc.getCliente()));
         mRVPedidoDetAdapter.clearAndAddAll(new PedidoDAO().lstPedidoDet(pc));
     }
 
@@ -73,6 +71,7 @@ public class PedidoInfoActivity extends AppCompatActivity implements IRVPedidoDe
         getMenuInflater().inflate(R.menu.menu_tool_eliminar, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //Capturo el click de la flecha hacia atrás

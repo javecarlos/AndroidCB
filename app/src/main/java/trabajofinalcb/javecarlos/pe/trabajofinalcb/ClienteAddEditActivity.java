@@ -123,7 +123,8 @@ public class ClienteAddEditActivity extends AppCompatActivity implements OnMapRe
                     startActivity(intent);
                     finish();
                     if (checkCallPermission()) {
-                        String msj = cliente.getEmpresaNombre() + " " + R.string.mensaje_sms;
+                        String msj = getResources().getString(R.string.mensaje_sms_inicio) + " " +
+                                cliente.getEmpresaNombre() + " " + getResources().getString(R.string.mensaje_sms_fin);
                         sendSMS(etContactoTelefono.getText().toString().trim(),msj);
                     }
                 } else {

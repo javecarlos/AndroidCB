@@ -57,16 +57,16 @@ public class PedidoProductosActivity extends AppCompatActivity implements IRVPro
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Seleccione Producto");
+        getSupportActionBar().setTitle(getResources().getString(R.string.texto_label_pedido_seleccionar));
         btAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String resp="OK";
                 if (etCantidad.getText().toString().trim().isEmpty()) {
-                    resp = "Falta Cantidad";
+                    resp = getResources().getString(R.string.error_cantidad_pedido);
                 }
                 if (idProducto < 1) {
-                    resp = "Escoger Producto";
+                    resp = getResources().getString(R.string.error_escoger_producto_pedido);
                 }
                 Toast.makeText(PedidoProductosActivity.this,resp,Toast.LENGTH_LONG).show();
                 if(resp.equals("OK")) {

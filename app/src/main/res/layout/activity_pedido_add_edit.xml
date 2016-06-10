@@ -61,14 +61,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Producto"
+                    android:text="@string/texto_label_pedido_producto"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Producto"
+                    android:text="@string/texto_pedido_nombre_producto"
                     android:textSize="11sp" />
 
                 <EditText
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cantidad Stock"
+                    android:text="@string/texto_label_pedido_cantidadstock"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:inputType="number"/>
@@ -99,7 +99,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Precio Unitario"
+                    android:text="@string/texto_label_pedido_precio_unitario"
                     android:textSize="11sp" />
 
                 <EditText

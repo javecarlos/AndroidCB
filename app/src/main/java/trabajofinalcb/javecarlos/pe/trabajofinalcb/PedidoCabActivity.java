@@ -25,8 +25,6 @@ public class PedidoCabActivity extends AppCompatActivity implements IRVPedidoCab
 
     private Toolbar toolbar;
 
-    private GoogleApiClient client;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +38,7 @@ public class PedidoCabActivity extends AppCompatActivity implements IRVPedidoCab
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Pedidos");
+        getSupportActionBar().setTitle(getResources().getString(R.string.texto_menu_pedidos));
     }
 
     @Override

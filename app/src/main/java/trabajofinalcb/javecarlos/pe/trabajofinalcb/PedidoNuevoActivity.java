@@ -3,7 +3,6 @@ package trabajofinalcb.javecarlos.pe.trabajofinalcb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 
@@ -29,7 +25,6 @@ import entities.Cliente;
 import entities.Pedido;
 import entities.PedidoCab;
 import entities.PedidoDet;
-import entities.Productos;
 import utils.Constantes;
 
 public class PedidoNuevoActivity extends AppCompatActivity implements IRVPedidoDetAdapter {
@@ -39,8 +34,6 @@ public class PedidoNuevoActivity extends AppCompatActivity implements IRVPedidoD
     private SPAdapter mSPAdapter;
     private Spinner spCliente;
 
-    PedidoCab pc = new PedidoCab();
-    PedidoDAO pd = new PedidoDAO();
     Cliente cliente = new Cliente();
 
     private RVPedidoDetAdapter mRVPedidoDetAdapter;
@@ -74,7 +67,7 @@ public class PedidoNuevoActivity extends AppCompatActivity implements IRVPedidoD
         toolbar = (Toolbar) findViewById(R.id.toolbarNuevo);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Nuevo Pedido");
+        getSupportActionBar().setTitle(getResources().getString(R.string.texto_label_pedido_nuevo));
 
         cliente = ObtenerCliente();
         if (cliente != null){

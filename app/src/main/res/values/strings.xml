@@ -70,6 +70,25 @@
     <string name="error_vacio_stock">Ingrese Stock</string>
     <string name="error_vacio_precio_unitario">Ingrese Precio</string>
 
+    <string name="texto_label_pedido_producto">Producto</string>
+    <string name="texto_pedido_nombre_producto">Nombre Producto</string>
+    <string name="texto_label_pedido_cantidadstock">Cantidad Stock</string>
+    <string name="texto_label_pedido_precio_unitario">Precio Unitario</string>
+    <string name="texto_label_pedido_nombre_cliente">Nombre del Cliente</string>
+    <string name="texto_label_pedido_productos_carrito">Productos del Carrito</string>
+    <string name="texto_label_pedido_total">Total</string>
+    <string name="texto_label_pedido_producto_seleccionado">Producto Seleccionado</string>
+    <string name="texto_label_pedido_cantidad_producto">Cantidad :</string>
+    <string name="texto_label_pedido_monto_total_producto">Total :</string>
+    <string name="texto_label_pedido_agregar_carrito">Agregar a Carrito</string>
+    <string name="texto_label_pedido_detalle">Detalle del Pedido</string>
+    <string name="texto_label_pedido">Pedido</string>
+    <string name="texto_label_pedido_cliente">Cliente</string>
+    <string name="texto_label_pedido_nuevo">Nuevo Pedido</string>
+    <string name="texto_label_pedido_seleccionar">Seleccione Producto</string>
+    <string name="error_cantidad_pedido">Falta Cantidad</string>
+    <string name="error_escoger_producto_pedido">Escoger Producto</string>
+
     <string name="texto_menu_nombre_usuario">Nombre de Usuario</string>
     <string name="texto_menu_clientes">Clientes</string>
     <string name="texto_menu_productos">Productos</string>
@@ -81,7 +100,8 @@
     <string name="longitud_dafault_map_inicio">-77.035528</string>
     <string name="latitud_default_map_fin">-12.087321</string>
     <string name="longitud_dafault_map_fin">-76.996592</string>
-    <string name="mensaje_sms">ha sido registrado en SaleDay</string>
+    <string name="mensaje_sms_inicio">Estimado</string>
+    <string name="mensaje_sms_fin">Saleday les dá la bienvenida a nuestros servicios.</string>
 
 
 </resources>
