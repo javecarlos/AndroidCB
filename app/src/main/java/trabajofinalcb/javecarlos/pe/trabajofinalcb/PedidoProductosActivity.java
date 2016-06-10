@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class PedidoProductosActivity extends AppCompatActivity implements IRVPro
     private TextView tvNombreProd,tvPrecio,tvTotal;
     private EditText etCantidad;
     private Toolbar toolbar;
-    private int idProducto;
+    private int idProducto=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,14 +61,26 @@ public class PedidoProductosActivity extends AppCompatActivity implements IRVPro
         btAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(PedidoProductosActivity.this,PedidoNuevoActivity.class);
-                intent.putExtra("pCantidad",etCantidad.getText().toString());
-                intent.putExtra("pIdProducto",idProducto);
-                intent.putExtra("pProducto",tvNombreProd.getText().toString());
-                intent.putExtra("pPrecio",tvPrecio.getText().toString());
-                intent.putExtra("pSubTotal",tvTotal.getText().toString());
-                setResult(0,intent);
-                finish();
+                String resp="OK";
+                if (etCantidad.getText().toString().trim().isEmpty()) {
+                    resp = "Falta Cantidad";
+                }
+                if (idProducto < 1) {
+                    resp = "Escoger Producto";
+                }
+                Toast.makeText(PedidoProductosActivity.this,resp,Toast.LENGTH_LONG).show();
+                if(resp.equals("OK")) {
+                    Intent intent = new Intent(PedidoProductosActivity.this, PedidoNuevoActivity.class);
+                    intent.putExtra("pCantidad", etCantidad.getText().toString());
+                    intent.putExtra("pIdProducto", idProducto);
+                    intent.putExtra("pProducto", tvNombreProd.getText().toString());
+                    intent.putExtra("pPrecio", tvPrecio.getText().toString());
+                    intent.putExtra("pSubTotal", tvTotal.getText().toString());
+                    setResult(69, intent);
+                    finish();
+                }else{
+                    Toast.makeText(PedidoProductosActivity.this,resp,Toast.LENGTH_LONG).show();
+                }
             }
         });
 

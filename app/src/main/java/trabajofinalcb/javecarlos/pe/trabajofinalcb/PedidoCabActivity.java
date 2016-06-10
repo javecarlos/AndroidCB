@@ -60,7 +60,7 @@ public class PedidoCabActivity extends AppCompatActivity implements IRVPedidoCab
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //Inflamos el menú que va a aparecer en el Toolbar
-        getMenuInflater().inflate(R.menu.menu_lista_cliente, menu);
+        getMenuInflater().inflate(R.menu.menu_lista_pedido, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
