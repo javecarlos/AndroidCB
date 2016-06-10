@@ -102,7 +102,7 @@
     <string name="latitud_default_map_fin">-12.087321</string>
     <string name="longitud_dafault_map_fin">-76.996592</string>
     <string name="mensaje_sms_inicio">Estimado</string>
-    <string name="mensaje_sms_fin">Saleday les dá la bienvenida a nuestros servicios.</string>
+    <string name="mensaje_sms_fin">, Saleday les dá la bienvenida a nuestros servicios.</string>
 
 
 </resources>
